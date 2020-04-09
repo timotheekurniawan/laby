@@ -11,7 +11,7 @@
 - An item will be placed randomly on the map to reduce Laby’s travel count. The number of reduced travel count varies among the maps.
 ### Features
 1. Generation of random game sets or events
-  - Randomize positions of apple in each map
+	- Linked list to store users 
 	
 2. Data structures for storing game status				
 	- Linked list to store users 
@@ -19,17 +19,17 @@
 	- Arrays to store current map
  
 3. Dynamic memory management					
-  - Initializing new user before getting the data
-  - Usage of linked list
+  	- Initializing new user before getting the data
+  	- Usage of linked list
  
 4. File input/output (e.g., for loading/saving game status)
-  - savefile.proto (using Google Protocol Buffer for serialization) → to save users data locally
+  	- savefile.proto (using Google Protocol Buffer for serialization) → to save users data locally
  
 5. Program codes in multiple files	
-  - labyrinth.cpp 		→ the main program
-  - play.cpp			→ function to play the game
-  - laby.cpp			→ function to move laby
-  - levels.cpp			→ store the empty maps of all levels
-  - userStruct.cpp		→ declaration of User Struct 
-  - welcome.cpp		→ starting the game
-  - congrats.cpp		→ finishing the game
+  	- labyrinth.cpp 		→ the main program
+  	- play.cpp			→ function to play the game
+ 	- laby.cpp			→ function to move laby
+  	- levels.cpp			→ store the empty maps of all levels
+  	- userStruct.cpp		→ declaration of User Struct 
+  	- welcome.cpp			→ starting the game
+  	- congrats.cpp			→ finishing the game
