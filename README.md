@@ -11,7 +11,7 @@
 - An item will be placed randomly on the map to reduce Laby’s travel count. The number of reduced travel count varies among the maps.
 ### Features
 1. Generation of random game sets or events
-	- Linked list to store users 
+	- Randomize positions of apple in each map
 	
 2. Data structures for storing game status				
 	- Linked list to store users 
