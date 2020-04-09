@@ -9,3 +9,27 @@
 - Spaces traveled by Laby will be counted towards the travel count regardless if Laby has already covered the place before or not.
 - If “Laby” exceeds the travel limitation, the player loses.
 - An item will be placed randomly on the map to reduce Laby’s travel count. The number of reduced travel count varies among the maps.
+### Features
+1. Generation of random game sets or events
+  - Randomize positions of apple in each map
+	
+2. Data structures for storing game status				
+	- Linked list to store users 
+	- Struct to store users’ data (current level, current map (coverage), current travel limit)
+	- Arrays to store current map
+ 
+3. Dynamic memory management					
+  - Initializing new user before getting the data
+  - Usage of linked list
+ 
+4. File input/output (e.g., for loading/saving game status)
+  - savefile.proto (using Google Protocol Buffer for serialization) → to save users data locally
+ 
+5. Program codes in multiple files	
+  - labyrinth.cpp 		→ the main program
+  - play.cpp			→ function to play the game
+  - laby.cpp			→ function to move laby
+  - levels.cpp			→ store the empty maps of all levels
+  - userStruct.cpp		→ declaration of User Struct 
+  - welcome.cpp		→ starting the game
+  - congrats.cpp		→ finishing the game
