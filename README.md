@@ -35,7 +35,7 @@
 
 4. File input/output (e.g., for loading/saving game status)
 
-   - savefile.proto (using Google Protocol Buffer for serialization) → to save users data locally
+   - savefile.cereal (using cereal serialization library) → to save users data locally
 
 5. Program codes in multiple files
    - main.cpp → the main program
