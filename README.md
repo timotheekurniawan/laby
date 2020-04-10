@@ -24,14 +24,14 @@
 
 2. Data structures for storing game status
 
-   - Linked list to store users
+   - Arrays to store users
    - Struct to store users’ data (current level, current map (coverage), current travel limit)
    - Arrays to store current map
 
 3. Dynamic memory management
 
    - Initializing new user before getting the data
-   - Usage of linked list
+   - Usage of dynamic arrays for expanding array size
 
 4. File input/output (e.g., for loading/saving game status)
 
