@@ -15,7 +15,7 @@ void displayExistingUsers(){
   // baca users
 }
 
-User getUser(string chosenUsername,User chosenUser){
+void getUser(string chosenUsername, User chosenUser){
   string file=chosenUsername+".txt";
   ifstream fin;
   fin.open(file);
@@ -26,9 +26,10 @@ User getUser(string chosenUsername,User chosenUser){
   }
   fin>>chosenUser.username>>chosenUser.level>>chosenUser.currentMap>>chosenUser.limit>>chosenUser.heartPos[0]>>chosenUser.heartPos[1]>>chosenUser.heartExist;
   fin.close()
+  return;
 }
 
-void createUser(string newUsername,User newUser){
+void createUser(string newUsername, User newUser){
   string file=newUsername+".txt";
   ofstream fout;
   fout.open(file);
@@ -39,11 +40,11 @@ void createUser(string newUsername,User newUser){
   }
   newUser.username=newUsername;
   newUser.level=1;
-  newUser.currentMap=GetEmptyMap(newUser.level);
-  newUser.limit=GetInitialMoves(newUser.level);
+  newUser.currentMap=getEmptyMap(newUser.level);
+  newUser.limit=getInitialMoves(newUser.level);
   newUser.heartPos[0];//how to randomize position?
   newUser.heartPos[1];//
-  newUser.heartExist=true;
+  newUser.heartExist=1;
   fout<<newUser.username<<" "<<newUser.level<<" "<<newUser.currentMap<<" "<<newUser.limit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
   fout.close();
 }

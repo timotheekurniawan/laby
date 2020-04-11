@@ -3,7 +3,7 @@
 #ifndef LEVELS_H
 #define LEVELS_H
 
-void GetEmptyMap(int level);
-int GetInitialMoves(int level);
+void getEmptyMap(int level);
+int getInitialMoves(int level);
 
 #endif

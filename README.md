@@ -20,7 +20,8 @@
 
 1. Generation of random game sets or events
 
-   - Randomize position of a heart in each map
+   - Randomize position of a heart in each map in each try
+   - Randomize the starting position in each map in each try
 
 2. Data structures for storing game status
 
