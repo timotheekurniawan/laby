@@ -7,7 +7,7 @@
 struct User {
   string username;
   int level;
-  std::string currentMap[10][10];
+  std::string currentMap;
   int limit;
   int heartPos[2];
   bool heartExist;

@@ -25,17 +25,17 @@
 2. Data structures for storing game status
 
    - Arrays to store users
-   - Struct to store users’ data (current level, current map (coverage), current travel limit)
+   - Struct to store users’ data (current level, current map (coverage), current travel limit, position of apple, apple existance)
    - Arrays to store current map
 
 3. Dynamic memory management
 
    - Initializing new user before getting the data
-   - Usage of dynamic arrays for expanding array size
 
 4. File input/output (e.g., for loading/saving game status)
 
-   - savefile.cereal (using cereal serialization library) → to save users data locally
+   - users --> a folder that consist of all [username].txt that holds the users data
+   - usernameList.txt --> consist of all usernames.
 
 5. Program codes in multiple files
    - main.cpp → the main program

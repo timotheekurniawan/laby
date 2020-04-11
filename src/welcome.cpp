@@ -15,7 +15,7 @@ void displayExistingUsers(){
   // baca users
 }
 
-void getUser(string chosenUsername,User chosenUser){
+User getUser(string chosenUsername,User chosenUser){
   string file=chosenUsername+".txt";
   ifstream fin;
   fin.open(file);
@@ -25,12 +25,7 @@ void getUser(string chosenUsername,User chosenUser){
     exit(1);
   }
   fin>>chosenUser.username>>chosenUser.level>>chosenUser.currentMap>>chosenUser.limit>>chosenUser.heartPos[0]>>chosenUser.heartPos[1]>>chosenUser.heartExist;
-  fin.close();
-  //call function PlayGame()?
-  PlayGame(chosenUser);
-
-
-  // ambil user
+  fin.close()
 }
 
 void createUser(string newUsername,User newUser){
@@ -51,9 +46,6 @@ void createUser(string newUsername,User newUser){
   newUser.heartExist=true;
   fout<<newUser.username<<" "<<newUser.level<<" "<<newUser.currentMap<<" "<<newUser.limit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
   fout.close();
-  //bikin user baru, return 
-  //call function PlayGame()?
-  PlayGame(newUser);
 }
 
 User newGame(){
