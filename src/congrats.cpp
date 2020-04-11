@@ -12,7 +12,10 @@ using namespace std;
 //If the user restarts game, it resets user's game progress(currentLevel,currentMap,etc.) to level 1
 //PlayGame(username) to play the game again
 //If the user quits game, the user's game progress(currentLevel,currentMap,etc.) is stored in username.txt
-void CompletedGame(User &username){
+void CompletedGame(User &userSelected){
+    string filename=userSelected.username+".txt";
+    ofstream fout;
+    fout.open(filename);
     int selection;
     cout<<"Congratulations. You have completed all the levels!"<<endl;
     cout<<"Would you like to restart?"<<endl;
@@ -22,18 +25,19 @@ void CompletedGame(User &username){
     cin>>selection;
     if (selection==1)
     {
-        username.currentLevel = 1;
-        username.currentMap = getEmptyMap(username.currentLevel);
-        username.currentLimit = getInitialLimit(username.currentLevel);
+        userSelected.currentLevel = 1;
+        userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
+        userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
         // username.heartPos[0] = randomizeHeartPos;
         // username.heartPos[1] = randomizeHeartPos;
         //randomizeHeartPos(username.currentMap);
-        username.heartExist = 1;
-        PlayGame(username);
+        userSelected.heartExist = 1;
+        PlayGame(userSelected);
     }
     else if (selection==2)
     {
-        username.currentLevel = 11;
+        userSelected.currentLevel = 11;
+        fout<<userSelected.username<<userSelected.currentLevel<<userSelected.currentMap<<userSelected.currentLimit<<userSelected.heartPos[0]<<userSelected.heartPos[1]<<userSelected.heartExist;
+        fout.close();
     }
-
 }

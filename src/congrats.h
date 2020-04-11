@@ -2,6 +2,6 @@
 #ifndef CONGRATS_H
 #define CONGRATS_H
 
-void CompletedGame(User &username);
+void CompletedGame(User &userSelected);
 
 #endif
