@@ -5,6 +5,7 @@
 #define USER_STRUCT
 
 struct User {
+  string username;
   int level;
   std::string currentMap[10][10];
   int limit;
