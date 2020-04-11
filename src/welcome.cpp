@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 #include "userStruct.h"
-#include "welcome.h"
+#include "levels.h"
 // #include "currentLevels.h"
 #include "play.h"
 using namespace std;
@@ -76,9 +76,9 @@ void createUser(string newUsername, User &newUser){
   newUser.username = newUsername;
   newUser.currentLevel = 1;
   newUser.currentMap = getEmptyMap(newUser.currentLevel);
-  newUser.currentLimit = getInitialMoves(newUser.currentLevel);
-  newUser.heartPos[0] = getStartingPosition[0];
-  newUser.heartPos[1] = getStartingPosition[1];
+  newUser.currentLimit = getInitialLimit(newUser.currentLevel);
+  // newUser.heartPos[0] = randomizeHeartPos[0];
+  // newUser.heartPos[1] = randomizeHeartPos[1];
   newUser.heartExist = 1;
 
   fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
@@ -114,7 +114,7 @@ User continueGame(){
 
 // Function to display welcome message and let the player choose
 // to new game or continue game. 
-// Returns   : the user
+// Return   : the user
 User welcome(){
   string game;
   User theUser;

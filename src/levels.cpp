@@ -6,6 +6,7 @@
 using namespace std;
 
 //DEFINE HEARTS
+#define HEART   "\xE2\x99\xA5"
 
 string maps[10] = {
   "----------------------------------------------------------------------------------------------------"
@@ -33,15 +34,15 @@ int getInitialLimit(int level){
   return limits[level-1];
 }
 
-void randomizeApplePos(string &map){
+void randomizeHeartPos(string &map){
   srand(time(NULL));
-  int applePos = rand() % 100;
-  map.replace(applePos, 1, HEART);
+  int heartPos = rand() % 100;
+  map.replace(heartPos, 1, HEART);
   return;
 }
 
 void buildMap(string map){
-  randomizeApplePos(map);
+  randomizeHeartPos(map);
 
 }
 
