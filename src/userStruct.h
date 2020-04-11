@@ -6,9 +6,9 @@
 
 struct User {
   std::string username;              
-  int currentLevel;             // Current level of user 
+  int currentLevel;             // Current currentLevel of user 
   std::string currentMap;       // String which corresponds to the map
-  int currentLimit;             // Current move limit
+  int currentLimit;             // Current move currentLimit
   int heartPos[2];              // (x,y) coordinate
   int heartExist;               // 1 if exist, 0 if not exist
 };
@@ -19,8 +19,8 @@ struct User {
 // 
 // (1)
 // User user1;
-// user1.level = 1;
-// user1.limit = 2;
+// user1.currentLevel = 1;
+// user1.currentLimit = 2;
 // user1.applePos[0] = 3;
 // user1.applePos[1] = 4;
 // user1.appleExist = true;
@@ -30,11 +30,11 @@ struct User {
 // 
 // (2)
 // User * user1 = new User;
-// (*user1).level = 4;
-// cout << (*user1).level << endl;
+// (*user1).currentLevel = 4;
+// cout << (*user1).currentLevel << endl;
 //
 // (3)
 // User * user1 = new User;
-// user1->level = 4;
-// cout << user->level << endl;
+// user1->currentLevel = 4;
+// cout << user1->currentLevel << endl;
 // 

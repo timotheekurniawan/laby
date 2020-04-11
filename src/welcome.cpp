@@ -7,29 +7,62 @@
 #include <fstream>
 #include "userStruct.h"
 #include "welcome.h"
-#include "levels.h"
+// #include "currentLevels.h"
 #include "play.h"
 using namespace std;
 
-void displayExistingUsers(){
-  // baca users
+// Function to add new username to usernameList.txt 
+// that holds all the username registered in the game
+// Input    : - new username
+void addToUsernameList(string username){
+  ofstream fout;
+  fout.open("usernameList.txt");
+  if (fout.fail()){
+    cout << "Error in file opening!" << endl;
+    exit(1);
+  }
+  fout << username << endl;
+  fout.close();
 }
 
-void getUser(string chosenUsername, User chosenUser){
+// Function to display all usernames in usernameList.txt 
+// that holds all the username registered in the game
+void displayExistingUsers(){
+  int count = 1;
+  string username;
+  ifstream fin;
+  fin.open("usernameList.txt");
+  while (fin >> username){
+    cout << count << ". " << username << endl;
+    ++count;
+  }
+  return;
+}
+
+// Function to get the chosen user from users.txt 
+// based on the chosen username
+// Input    : - chosen username
+//            - chosenUser (pass by referenced)
+void getUser(string chosenUsername, User &chosenUser){
   string file=chosenUsername+".txt";
   ifstream fin;
   fin.open(file);
   if (fin.fail())
   {
-    cout<<"Error in file opening"<<endl;
+    cout<<"Error in file opening!"<<endl;
     exit(1);
   }
-  fin>>chosenUser.username>>chosenUser.level>>chosenUser.currentMap>>chosenUser.limit>>chosenUser.heartPos[0]>>chosenUser.heartPos[1]>>chosenUser.heartExist;
-  fin.close()
+  fin>>chosenUser.username>>chosenUser.currentLevel>>chosenUser.currentMap>>chosenUser.currentLimit>>chosenUser.heartPos[0]>>chosenUser.heartPos[1]>>chosenUser.heartExist;
+  fin.close();
   return;
 }
 
-void createUser(string newUsername, User newUser){
+// Function to create a new user to users.txt 
+// with username input. It also calls the function
+// addToUsernameList() to add the new username to usersList.txt
+// Input    : - new username
+//            - newUser (pass by referenced) 
+void createUser(string newUsername, User &newUser){
   string file=newUsername+".txt";
   ofstream fout;
   fout.open(file);
@@ -38,46 +71,58 @@ void createUser(string newUsername, User newUser){
     cout<<"Error in file opening!"<<endl;
     exit(1);
   }
-  newUser.username=newUsername;
-  newUser.level=1;
-  newUser.currentMap=getEmptyMap(newUser.level);
-  newUser.limit=getInitialMoves(newUser.level);
-  newUser.heartPos[0];//how to randomize position?
-  newUser.heartPos[1];//
-  newUser.heartExist=1;
-  fout<<newUser.username<<" "<<newUser.level<<" "<<newUser.currentMap<<" "<<newUser.limit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
+  addToUsernameList(newUsername);
+
+  newUser.username = newUsername;
+  newUser.currentLevel = 1;
+  newUser.currentMap = getEmptyMap(newUser.currentLevel);
+  newUser.currentLimit = getInitialMoves(newUser.currentLevel);
+  newUser.heartPos[0] = getStartingPosition[0];
+  newUser.heartPos[1] = getStartingPosition[1];
+  newUser.heartExist = 1;
+
+  fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
   fout.close();
 }
 
+
+// Function used if the player choose New Game.
+// It asks for a new username and create the user
+// then store the user locally.
+// Return   : the newly created User
 User newGame(){
   string newUsername;
   User newUser;
   cout << "Enter a new username: ";
   cin >> newUsername;
-  createUser(newUsername,newUser);
+  createUser(newUsername, newUser);
   return newUser;
 }
 
+// Function used if the player choose Continue Game.
+// The player chooses the user. 
+// Return   : the chosen existing User
 User continueGame(){
   string chosenUsername;
   User chosenUser;
   cout << "Choose an existing user:" << endl;
   displayExistingUsers();
   cin >> chosenUsername;
-  chosenUser = getUser(chosenUsername,chosenUser);
+  getUser(chosenUsername,chosenUser);
   return chosenUser;
 }
 
-
 // Function to display welcome message and let the player choose
-// to new game or continue game. Returns the user.
+// to new game or continue game. 
+// Returns   : the user
 User welcome(){
   string game;
   User theUser;
   cout << "Welcome to Labyrinth!" << endl;
+  cout << "Choose (1) or (2)" << endl;
   cout << "1. New Game" << endl;
   cout << "2. Continue Game" << endl;
-  
+
   cin >> game;
   if (game == "1"){
     theUser = newGame();

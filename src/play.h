@@ -4,6 +4,6 @@
 #define PLAY_H
 
 void PlayGame(User &userSelected);
-void PlayLevel(User &userSelected);
+void PlaycurrentLevel(User &userSelected);
 
 #endif
