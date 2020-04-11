@@ -6,18 +6,54 @@
 #include <string>
 #include <fstream>
 #include "userStruct.h"
+#include "welcome.h"
+#include "levels.h"
+#include "play.h"
 using namespace std;
 
 void displayExistingUsers(){
   // baca users
 }
 
-void getUser(){
+void getUser(string chosenUsername,User chosenUser){
+  string file=chosenUsername+".txt";
+  ifstream fin;
+  fin.open(file);
+  if (fin.fail())
+  {
+    cout<<"Error in file opening"<<endl;
+    exit(1);
+  }
+  fin>>chosenUser.username>>chosenUser.level>>chosenUser.currentMap>>chosenUser.limit>>chosenUser.heartPos[0]>>chosenUser.heartPos[1]>>chosenUser.heartExist;
+  fin.close();
+  //call function PlayGame()?
+  PlayGame(chosenUser);
+
+
   // ambil user
 }
 
-void createUser(){
+void createUser(string newUsername,User newUser){
+  string file=newUsername+".txt";
+  ofstream fout;
+  fout.open(file);
+  if (fout.fail())
+  {
+    cout<<"Error in file opening!"<<endl;
+    exit(1);
+  }
+  newUser.username=newUsername;
+  newUser.level=1;
+  newUser.currentMap=GetEmptyMap(newUser.level);
+  newUser.limit=GetInitialMoves(newUser.level);
+  newUser.heartPos[0];//how to randomize position?
+  newUser.heartPos[1];//
+  newUser.heartExist=true;
+  fout<<newUser.username<<" "<<newUser.level<<" "<<newUser.currentMap<<" "<<newUser.limit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
+  fout.close();
   //bikin user baru, return 
+  //call function PlayGame()?
+  PlayGame(newUser);
 }
 
 User newGame(){
@@ -25,7 +61,7 @@ User newGame(){
   User newUser;
   cout << "Enter a new username: ";
   cin >> newUsername;
-  createUser(newUsername);
+  createUser(newUsername,newUser);
   return newUser;
 }
 
@@ -35,7 +71,7 @@ User continueGame(){
   cout << "Choose an existing user:" << endl;
   displayExistingUsers();
   cin >> chosenUsername;
-  chosenUser = getUser(chosenUsername);
+  chosenUser = getUser(chosenUsername,chosenUser);
   return chosenUser;
 }
 

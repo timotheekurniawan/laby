@@ -9,8 +9,8 @@ struct User {
   int level;
   std::string currentMap[10][10];
   int limit;
-  int applePos[2];
-  bool appleExist;
+  int heartPos[2];
+  bool heartExist;
 };
 
 #endif
