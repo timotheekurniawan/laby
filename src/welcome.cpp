@@ -9,21 +9,34 @@
 using namespace std;
 
 void displayExistingUsers(){
-  
+  // baca users
+}
+
+void getUser(){
+  // ambil user
+}
+
+void createUser(){
+  //bikin user baru, return 
 }
 
 User newGame(){
   string newUsername;
+  User newUser;
   cout << "Enter a new username: ";
   cin >> newUsername;
-  
+  createUser(newUsername);
+  return newUser;
 }
 
 User continueGame(){
   string chosenUsername;
+  User chosenUser;
   cout << "Choose an existing user:" << endl;
   displayExistingUsers();
   cin >> chosenUsername;
+  chosenUser = getUser(chosenUsername);
+  return chosenUser;
 }
 
 
