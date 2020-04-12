@@ -6,7 +6,7 @@
 
 std::string getEmptyMap(int level);
 int getInitialLimit(int level);
-void randomizeHeartPos(string &map);
+void randomizeHeartPos(std::string &map);
+void randomizeStartPos(std::string &map);
 void buildMap(std::string map);
-
 #endif
