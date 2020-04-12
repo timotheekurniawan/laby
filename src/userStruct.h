@@ -9,8 +9,6 @@ struct User {
   int currentLevel;             // Current currentLevel of user 
   std::string currentMap;       // String which corresponds to the map
   int currentLimit;             // Current move currentLimit
-  int heartPos[2];              // (x,y) coordinate
-  int heartExist;               // 1 if exist, 0 if not exist
 };
 
 #endif
