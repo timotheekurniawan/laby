@@ -3,7 +3,7 @@
 #ifndef PLAY_H
 #define PLAY_H
 
-void PlayGame(User &userSelected);
+void PlayGame(User &userSelected,bool &stillplaying);
 void PlaycurrentLevel(User &userSelected);
 
 #endif
