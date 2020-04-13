@@ -7,5 +7,5 @@ using namespace std;
 
 int main(){
   User user = welcome();
-  playGame(user);
+  PlayGame(user);
 }

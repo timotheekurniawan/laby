@@ -52,7 +52,7 @@ void getUser(string chosenUsername, User &chosenUser){
     cout<<"Error in file opening!"<<endl;
     exit(1);
   }
-  fin>>chosenUser.username>>chosenUser.currentLevel>>chosenUser.currentMap>>chosenUser.currentLimit>>chosenUser.heartPos[0]>>chosenUser.heartPos[1]>>chosenUser.heartExist;
+  fin>>chosenUser.username>>chosenUser.currentLevel>>chosenUser.currentMap>>chosenUser.currentLimit>>chosenUser.currentTravel;
   fin.close();
   return;
 }
@@ -68,7 +68,7 @@ void createUser(string newUsername, User &newUser){
   fout.open(file);
   if (fout.fail())
   {
-    cout<<"Error in file opening!"<<endl;
+      cout<<"Error in file opening!"<<endl;
     exit(1);
   }
   addToUsernameList(newUsername);
@@ -77,11 +77,9 @@ void createUser(string newUsername, User &newUser){
   newUser.currentLevel = 1;
   newUser.currentMap = getEmptyMap(newUser.currentLevel);
   newUser.currentLimit = getInitialLimit(newUser.currentLevel);
-  // newUser.heartPos[0] = randomizeHeartPos[0];
-  // newUser.heartPos[1] = randomizeHeartPos[1];
-  newUser.heartExist = 1;
+  newUser.currentTravel=0;
 
-  fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.heartPos[0]<<" "<<newUser.heartPos[1]<<" "<<newUser.heartExist<<endl;
+  fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.currentTravel<<endl;
   fout.close();
 }
 
@@ -124,12 +122,13 @@ User welcome(){
   cout << "2. Continue Game" << endl;
 
   cin >> game;
-  if (game == "1"){
-    theUser = newGame();
+  if (game == "1")
+  {
+      theUser = newGame();
   }
-  if (game == "2"){
-    theUser = continueGame();
+  if (game == "2")
+  {
+      theUser = continueGame();
   }
-  
   return theUser;
 }
