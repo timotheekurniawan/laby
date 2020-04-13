@@ -51,7 +51,7 @@ void randomizeHeartPos(string &map){
 void randomizeStartPos(string &map){
   srand(time(NULL));
   int startPos = rand() % 100;
-  map.replace(startPos, 1, '*');
+  map.replace(startPos, 1, "*");
 }
 
 // Function to output the map in grids.

@@ -19,9 +19,10 @@ void completedGame(User &userSelected){
     int selection;
     cout<<"Congratulations. You have completed all the levels!"<<endl;
     cout<<"Would you like to restart?"<<endl;
-    cout<<"Choose (1) or (2)"<<endl;
     cout<<"1. Restart Game"<<endl;
     cout<<"2. Quit Game"<<endl;
+    cout<<"Choose (1) or (2)"<<endl;
+    cout<<"Selection: "<<endl;
     cin>>selection;
     if (selection==1)
     {
