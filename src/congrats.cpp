@@ -12,6 +12,7 @@ using namespace std;
 // - If the user restarts game, it resets user's game progress(currentLevel, currentMap, and currentLimit) to level 1
 //   PlayGame(username) to play the game again.
 // - If the user quits game, the user's game progress(currentLevel,currentMap,etc.) is stored in username.txt.
+//input: struct of userSelected (pass by referenced)
 void completedGame(User &userSelected){
     string filename=userSelected.username+".txt";
     ofstream fout;
@@ -29,10 +30,7 @@ void completedGame(User &userSelected){
         userSelected.currentLevel = 1;
         userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
-        // username.heartPos[0] = randomizeHeartPos;
-        // username.heartPos[1] = randomizeHeartPos;
-        // randomizeHeartPos(username.currentMap);
-        //userSelected.heartExist = 1;
+        userSelected.currentTravel=0;
         PlayGame(userSelected);
     }
     else if (selection==2)
