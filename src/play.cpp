@@ -8,14 +8,14 @@
 using namespace std;
 
 //function to play a certain level
-///randomizeStartPos() is called to place laby in a randomize position in the map
+//randomizeStartPos() is called to place laby in a randomize position in the map
 //randomizeHeartPos() is called to place a heart in a randomize position in the map
 //getMove() is called for getting user's input on what direction will laby go
 //buildMap is called to output the map
 //stores userSelected's progress(currentLevel,currentMap,currentLimit,currentTravel) in userSelected.username.txt when user decides to quit game
 //input : -struct of user selected
-//        -boolean stillplaying which indicates if a user still wants to play or not, if a user quits, stillplaying becomes false
-void PlaycurrentLevel(User &userSelected,bool &stillplaying){
+//        -boolean stillPlaying which indicates if a user still wants to play or not, if a user quits, stillPlaying becomes false
+void playCurrentLevel(User &userSelected,bool &stillPlaying){
     int selection;
     randomizeStartPos(userSelected.currentMap);
     randomizeHeartPos(userSelected.currentMap);
@@ -25,8 +25,9 @@ void PlaycurrentLevel(User &userSelected,bool &stillplaying){
         cout<<"Moves Remaining: "<<userSelected.currentLimit<<endl;
         getMove(userSelected);
     }
+
     //if user fills out all the empty spaces in the map with 'O' and user's currentLimit is not yet 0
-    if (userSelected.currentTravel==spaces[userSelected.currentLevel-1] && userSelected.currentLimit>0)
+    if (userSelected.currentTravel==spaces[userSelected.currentLevel-1] && userSelected.currentLimit>=0)
     {
         cout<<"Level "<<userSelected.currentLevel<<"Completed!"<<endl;
         userSelected.currentLevel+=1;
@@ -52,8 +53,11 @@ void PlaycurrentLevel(User &userSelected,bool &stillplaying){
                 exit(1);
             }
             fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
-            stillplaying=false;
-
+            stillPlaying=false;
+        }
+        else if (selection==1)
+        {
+            playCurrentLevel(userSelected, stillPlaying);
         }
     }
     //if user fails to complete the level, indicated by not being able tofill out all the empty spaces in the map with 'O' when user's currentLimit has reached 0
@@ -81,7 +85,11 @@ void PlaycurrentLevel(User &userSelected,bool &stillplaying){
                 exit(1);
             }
             fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
-            stillplaying=false;
+            stillPlaying=false;
+        }
+        else if (selection==1)
+        {
+            playCurrentLevel(userSelected, stillPlaying);
         }
     }
 }
@@ -90,11 +98,11 @@ void PlaycurrentLevel(User &userSelected,bool &stillplaying){
 //Playcurrentlevel() is called to play a certain level
 //CompletedGame() is called to display congratulations message when user succeeds to completed all 10 level
 //input: -struct of userSelected
-void PlayGame(User &userSelected){
-    bool stillplaying=true;
-    while (userSelected.currentLevel<11 && stillplaying)
+void playGame(User &userSelected){
+    bool stillPlaying=true;
+    while (userSelected.currentLevel<11 && stillPlaying)
     {
-        PlaycurrentLevel(userSelected,stillplaying);
+        playCurrentLevel(userSelected,stillPlaying);
     }
-    CompletedGame(userSelected);
+    completedGame(userSelected);
 }
