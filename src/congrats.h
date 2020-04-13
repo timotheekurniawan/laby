@@ -1,7 +1,8 @@
 //congrats.h
+#include "userStruct.h"
 #ifndef CONGRATS_H
 #define CONGRATS_H
 
-void CompletedGame(User &userSelected);
+void completedGame(User &userSelected);
 
 #endif

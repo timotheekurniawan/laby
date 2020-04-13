@@ -1,13 +1,15 @@
 //welcome.h
+#include <string>
+#include "userStruct.h"
 #ifndef WELCOME_H
 #define WELCOME_H
 
-User welcome();
+void addToUsernameList(std::string username);
+void displayExistingUsers();
+void getUser(std::string chosenUsername, User &chosenUser);
+void createUser(std::string newUsername, User &newUser)
 User newGame();
 User continueGame();
-void createUser(string newUsername, User &newUser);
-void getUser(string chosenUsername, User &chosenUser);
-void displayExistingUsers();
-void addToUsernameList(string username);
+User welcome();
 
 #endif

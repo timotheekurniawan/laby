@@ -8,9 +8,9 @@ using namespace std;
 
 
 //function to move laby to the left
-void moveLeft(int LabyPos,User &userSelected){
-    int a=LabyPos%10;//misal posisi laby 28, jadi a=8
-    for (int i=LabyPos-1;i>=LabyPos-a;--i)//biar i>=20 (kalo posisi laby 28, brarti kalo move left check index 27 26 25 24 23 22 21 20)
+void moveLeft(int labyPos,User &userSelected){
+    int a=labyPos%10;//misal posisi laby 28, jadi a=8
+    for (int i=labyPos-1;i>=labyPos-a;--i)//biar i>=20 (kalo posisi laby 28, brarti kalo move left check index 27 26 25 24 23 22 21 20)
     {
         if (userSelected.currentMap[i]==' ')
         {
@@ -33,10 +33,10 @@ void moveLeft(int LabyPos,User &userSelected){
 }
 
 //function to move laby to the right
-void moveRight(int LabyPos,User &userSelected){
-    int b=LabyPos%10;//misal posisi laby 35, brarti b=5
+void moveRight(int labyPos,User &userSelected){
+    int b=labyPos%10;//misal posisi laby 35, brarti b=5
     int a=9-b;//a=9-5=4
-    for (int i=LabyPos+1;i<=LabyPos+a;++i)//biar i<=39 (kalo posisi laby 35, brarti kalo move right cek index 36 37 38 39)
+    for (int i=labyPos+1;i<=labyPos+a;++i)//biar i<=39 (kalo posisi laby 35, brarti kalo move right cek index 36 37 38 39)
     {
         if (userSelected.currentMap[i]==' ')
         {
@@ -59,9 +59,9 @@ void moveRight(int LabyPos,User &userSelected){
 }
 
 //function to move laby upwards
-void moveUp(int LabyPos,User &userSelected){
-    int a=LabyPos%10;//misal posisi laby 52, brarti a=2
-    for (int i=LabyPos-10;i>=a;i-=10)//biar i>=2 (kalo posisi laby 52, brarti kalo move up cek index 42,32,22,12,2)
+void moveUp(int labyPos,User &userSelected){
+    int a=labyPos%10;//misal posisi laby 52, brarti a=2
+    for (int i=labyPos-10;i>=a;i-=10)//biar i>=2 (kalo posisi laby 52, brarti kalo move up cek index 42,32,22,12,2)
     {
         if (userSelected.currentMap[i]==' ')
         {
@@ -84,9 +84,9 @@ void moveUp(int LabyPos,User &userSelected){
 }
 
 //function to move laby downwards
-void moveDown(int LabyPos,User &userSelected){
-    int a=LabyPos%10;//misal posisi laby 74, brarti a=4
-    for (int i=LabyPos+10;i<=(90+a);i+=10)//biar i<=94 (kalo posisi laby 74, berarti kalo move down cek index 84 94)
+void moveDown(int labyPos,User &userSelected){
+    int a=labyPos%10;//misal posisi laby 74, brarti a=4
+    for (int i=labyPos+10;i<=(90+a);i+=10)//biar i<=94 (kalo posisi laby 74, berarti kalo move down cek index 84 94)
     {
         if (userSelected.currentMap[i]==' ')
         {
@@ -113,7 +113,7 @@ void moveDown(int LabyPos,User &userSelected){
 //moveLeft(),moveRight(),moveUp(), and moveDown() to move to respective directions
 void getMove(User &userSelected){
     int move;
-    int LabyPos=(userSelected.currentMap).find("*");//to find postion(index) of laby in map represented by a string
+    int labyPos=(userSelected.currentMap).find("*");//to find postion(index) of laby in map represented by a string
     userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
     cout<<"1. Left"<<endl;
     cout<<"2. Right"<<endl;
@@ -125,18 +125,18 @@ void getMove(User &userSelected){
     userSelected.currentLimit-=1;
     if (move==1)
     {
-        moveLeft(LabyPos,userSelected);
+        moveLeft(labyPos,userSelected);
     }
     else if (move==2)
     {
-        moveRight(LabyPos,userSelected);
+        moveRight(labyPos,userSelected);
     }
     else if (move==3)
     {
-        moveUp(LabyPos,userSelected);
+        moveUp(labyPos,userSelected);
     }
     else if (move==5)
     {
-        moveDown(LabyPos,userSelected);
+        moveDown(labyPos,userSelected);
     }
 }

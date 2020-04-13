@@ -1,9 +1,10 @@
 //play.h
 //to play game
+#include "userStruct.h"
 #ifndef PLAY_H
 #define PLAY_H
 
-void PlayGame(User &userSelected,bool &stillplaying);
-void PlaycurrentLevel(User &userSelected);
+void playCurrentLevel(User &userSelected,bool &stillPlaying);
+void playGame(User &userSelected);
 
 #endif
