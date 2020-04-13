@@ -7,6 +7,7 @@ using namespace std;
 #define HEART "\xE2\x99\xA5"
 
 
+//function to move laby to the left
 void moveLeft(int LabyPos,User &userSelected){
     int a=LabyPos%10;//misal posisi laby 28, jadi a=8
     for (int i=LabyPos-1;i>=LabyPos-a;--i)//biar i>=20 (kalo posisi laby 28, brarti kalo move left check index 27 26 25 24 23 22 21 20)
@@ -15,12 +16,14 @@ void moveLeft(int LabyPos,User &userSelected){
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i+1]='O';
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i]==HEART)
         {
             userSelected.currentMap[i]=='*';
             userSelected.currentMap[i+1]=='O';
             userSelected.currentLimit+=1;
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i]=='X')
         {
@@ -29,6 +32,7 @@ void moveLeft(int LabyPos,User &userSelected){
     }
 }
 
+//function to move laby to the right
 void moveRight(int LabyPos,User &userSelected){
     int b=LabyPos%10;//misal posisi laby 35, brarti b=5
     int a=9-b;//a=9-5=4
@@ -38,12 +42,14 @@ void moveRight(int LabyPos,User &userSelected){
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i-1]='O';
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i]==HEART)
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i-1]='O';
             userSelected.currentLimit+=1;
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i+1]=='X')
         {
@@ -52,6 +58,7 @@ void moveRight(int LabyPos,User &userSelected){
     }
 }
 
+//function to move laby upwards
 void moveUp(int LabyPos,User &userSelected){
     int a=LabyPos%10;//misal posisi laby 52, brarti a=2
     for (int i=LabyPos-10;i>=a;i-=10)//biar i>=2 (kalo posisi laby 52, brarti kalo move up cek index 42,32,22,12,2)
@@ -60,12 +67,14 @@ void moveUp(int LabyPos,User &userSelected){
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i+10]='O';
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i-10]==HEART)
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i+10]='O';
             userSelected.currentLimit+=1;
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i]=='X')
         {
@@ -74,6 +83,7 @@ void moveUp(int LabyPos,User &userSelected){
     }
 }
 
+//function to move laby downwards
 void moveDown(int LabyPos,User &userSelected){
     int a=LabyPos%10;//misal posisi laby 74, brarti a=4
     for (int i=LabyPos+10;i<=(90+a);i+=10)//biar i<=94 (kalo posisi laby 74, berarti kalo move down cek index 84 94)
@@ -82,12 +92,14 @@ void moveDown(int LabyPos,User &userSelected){
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i-10]='O';
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i]==HEART)
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i-10]='O';
             userSelected.currentLimit+=1;
+            userSelected.currentTravel+=1;
         }
         else if (userSelected.currentMap[i]=='X')
         {
