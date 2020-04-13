@@ -1,14 +1,11 @@
 // welcome.cpp
 // Display welcome message, choose either new or continue game
 // Get the user and return it to the main function
-
 #include <iostream>
 #include <string>
 #include <fstream>
 #include "userStruct.h"
 #include "levels.h"
-// #include "currentLevels.h"
-#include "play.h"
 using namespace std;
 
 // Function to add new username to usernameList.txt 
