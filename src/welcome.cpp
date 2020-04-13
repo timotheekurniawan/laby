@@ -65,7 +65,7 @@ void createUser(string newUsername, User &newUser){
   fout.open(file);
   if (fout.fail())
   {
-      cout<<"Error in file opening!"<<endl;
+    cout<<"Error in file opening!"<<endl;
     exit(1);
   }
   addToUsernameList(newUsername);
@@ -112,7 +112,7 @@ User continueGame(){
 // Return   : the user
 User welcome(){
   string game;
-  User theUser;
+  User userPlaying;
   cout << "Welcome to Labyrinth!" << endl;
   cout << "Choose (1) or (2)" << endl;
   cout << "1. New Game" << endl;
@@ -121,11 +121,11 @@ User welcome(){
   cin >> game;
   if (game == "1")
   {
-      theUser = newGame();
+      userPlaying = newGame();
   }
   if (game == "2")
   {
-      theUser = continueGame();
+      userPlaying = continueGame();
   }
-  return theUser;
+  return userPlaying;
 }
