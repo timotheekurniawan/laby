@@ -24,7 +24,7 @@ int spaces[10] = {67, 45};
 // Input    : - level
 // Return   : - the initial limit
 int getInitialLimit(int level){
-  return limits[level-1];
+    return limits[level-1];
 }
 
 // Function to randomize the starting position of Laby
@@ -32,18 +32,18 @@ int getInitialLimit(int level){
 // is used when starting or restarting level
 // Input    : - map (pass by referenced)
 void randomizeStartPos(string &map){
-  srand(time(NULL));
-  int startPos;
-  while (true)
-  {
-    startPos = rand() % 100;
-    if (map.substr(startPos, 1) == " ")
+    srand(time(NULL));
+    int startPos;
+    while (true)
     {
-      map.replace(startPos, 1, "*");
-      break;
+        startPos = rand() % 100;
+        if (map.substr(startPos, 1) == " ")
+        {
+            map.replace(startPos, 1, "*");
+            break;
+        }
     }
-  }
-  return;
+    return;
 }
 
 // Function to randomize the position of heart
@@ -51,56 +51,56 @@ void randomizeStartPos(string &map){
 // is used when starting or restarting level
 // Input    : - map (pass by referenced)
 void randomizeHeartPos(string &map){
-  srand(time(NULL));
-  int heartPos;
-  while (true)
-  {
-    heartPos = rand() % 100;
-    if (map.substr(heartPos, 1) == " ")
+    srand(time(NULL));
+    int heartPos;
+    while (true)
     {
-      map.replace(heartPos, 1, "*");
-      break;
+        heartPos = rand() % 100;
+        if (map.substr(heartPos, 1) == " ")
+        {
+            map.replace(heartPos, 1, "*");
+            break;
+        }
     }
-  }
-  return;
+    return;
 }
 
 // Function to get the empty map of the level
 // Input    : - level
 // Return   : - the empty map
 string getEmptyMap(int level){
-  string map = maps[level-1];
-  randomizeStartPos(map);
-  randomizeHeartPos(map);
-  return map;
+    string map = maps[level-1];
+    randomizeStartPos(map);
+    randomizeHeartPos(map);
+    return map;
 }
 
 // Function to output the map in grids
 // Input    : - map
 void buildMap(string map){
-  string line;
-  for (int i = 0; i < 10; ++i)
-  {
+    string line;
+    for (int i = 0; i < 10; ++i)
+    {
+        for (int a = 0; a < 10; ++a)
+        {
+            cout << " -";
+        }
+        cout << endl;
+        line = map.substr(i * 10, 10);                      // Get each line. i * 10 to get index 0, 10, and so on.
+        for (int b = 0; b < 10; ++b)
+        {
+            cout << "|" << line.substr(b, 1);
+        }
+        cout << "|" << endl;
+    }
     for (int a = 0; a < 10; ++a)
-    {
-      cout << " -";
-    }
-    cout << endl;
-    line = map.substr(i * 10, 10);                      // Get each line. i * 10 to get index 0, 10, and so on.
-    for (int b = 0; b < 10; ++b)
-    {
-      cout << "|" << line.substr(b, 1);
-    }
-    cout << "|" << endl;
-  }
-  for (int a = 0; a < 10; ++a)
-  {                                                     // Print last line
-    cout << " -";
-  }    
-  cout << endl;                     
+    {                                                     // Print last line
+        cout << " -";
+    }    
+    cout << endl;                     
 }
 
 int main(){
-  string s = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-  buildMap(s);
+    string s = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    buildMap(s);
 }

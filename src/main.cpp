@@ -6,6 +6,6 @@
 using namespace std;
 
 int main(){
-  User userPlaying = welcome();
-  playGame(userPlaying);
+    User userPlaying = welcome();
+    playGame(userPlaying);
 }
