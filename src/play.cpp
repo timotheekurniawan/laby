@@ -17,8 +17,8 @@ using namespace std;
 //        -boolean stillPlaying which indicates if a user still wants to play or not, if a user quits, stillPlaying becomes false
 void playCurrentLevel(User &userSelected,bool &stillPlaying){
     int selection;
-    randomizeStartPos(userSelected.currentMap);
-    randomizeHeartPos(userSelected.currentMap);
+    // randomizeStartPos(userSelected.currentMap);
+    // randomizeHeartPos(userSelected.currentMap);
     while (userSelected.currentLimit>0 && userSelected.currentTravel<spaces[userSelected.currentLevel-1])
     {
         buildMap(userSelected.currentMap);
@@ -54,6 +54,7 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
             }
             fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
             stillPlaying=false;
+            return;
         }
         else if (selection==1)
         {
@@ -86,6 +87,7 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
             }
             fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
             stillPlaying=false;
+            return;
         }
         else if (selection==1)
         {
