@@ -65,7 +65,7 @@ void randomizeHeartPos(string &map){
         heartPos = rand() % 100;
         if (map.substr(heartPos, 1) == "-")
         {
-            map.replace(heartPos, 1, "*");
+            map.replace(heartPos, 1, HEART);
             break;
         }
     }
