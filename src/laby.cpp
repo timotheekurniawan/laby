@@ -80,7 +80,7 @@ void moveUp(int labyPos,User &userSelected){
             {
                 userSelected.currentMap[i]='*';
                 userSelected.currentMap[i+10]='O';
-                userSelected.currentLimit+=1;
+                // userSelected.currentLimit+=1;
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
             }
