@@ -98,11 +98,21 @@ User newGame(){
 // The player chooses the user. 
 // Return   : the chosen existing User
 User continueGame(){
+    ifstream fin;
+    fin.open("usernameList.txt");
+    if (fin.fail()){
+        cout << "Error in opening usernameList" << endl;
+        exit(1);
+    }
+    int chosenUsernameNumber;
     string chosenUsername;
     User chosenUser;
     cout << "Choose an existing user:" << endl;
     displayExistingUsers();
-    cin >> chosenUsername;
+    cin >> chosenUsernameNumber;
+    for (int i = 0; i < chosenUsernameNumber; ++i){
+        fin >> chosenUsername;
+    }
     getUser(chosenUsername,chosenUser);
     return chosenUser;
 }
