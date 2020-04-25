@@ -31,12 +31,14 @@ void completedGame(User &userSelected){
         userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
         userSelected.currentTravel=0;
+        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
+        fout.close();
         PlayGame(userSelected);
     }
     else if (selection==2)
     {
         userSelected.currentLevel = 11;
-        fout<<userSelected.username<<userSelected.currentLevel<<userSelected.currentMap<<userSelected.currentLimit<<userSelected.currentTravel;
+        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
         fout.close();
     }
 }
