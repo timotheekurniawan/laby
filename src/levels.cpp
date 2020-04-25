@@ -10,7 +10,7 @@ using namespace std;
 
 // Map of each level in form of string
 string maps[10] = {
-  "------------------------------------------------------------------X---------------------------------"
+  "------------------------------------------------------------------X---------------------------------",
   "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 };
 
@@ -27,6 +27,13 @@ int getInitialLimit(int level){
     return limits[level-1];
 }
 
+// Function to get the initial available spaces of the level
+// Input    : - level
+// Return   : - the initial available spaces
+int getInitialSpace(int level){
+    return spaces[level-1];
+}
+
 // Function to randomize the starting position of Laby
 // in the map then update it to the map. This function
 // is used when starting or restarting level
@@ -37,7 +44,7 @@ void randomizeStartPos(string &map){
     while (true)
     {
         startPos = rand() % 100;
-        if (map.substr(startPos, 1) == " ")
+        if (map.substr(startPos, 1) == "-")
         {
             map.replace(startPos, 1, "*");
             break;
@@ -56,7 +63,7 @@ void randomizeHeartPos(string &map){
     while (true)
     {
         heartPos = rand() % 100;
-        if (map.substr(heartPos, 1) == " ")
+        if (map.substr(heartPos, 1) == "-")
         {
             map.replace(heartPos, 1, "*");
             break;
@@ -98,9 +105,4 @@ void buildMap(string map){
         cout << " -";
     }    
     cout << endl;                     
-}
-
-int main(){
-    string s = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    buildMap(s);
 }
