@@ -153,7 +153,6 @@ void getMove(User &userSelected){
     int move;
     int labyPos=(userSelected.currentMap).find('*');//to find postion(index) of laby in map represented by a string
     // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-    cout<<labyPos<<endl;
     cout<<"1. Left"<<endl;
     cout<<"2. Right"<<endl;
     cout<<"3. Up"<<endl;
