@@ -1,16 +1,16 @@
 main: main.o welcome.o play.o
-	g++ $^ -o $@
+		g++ $^ -o $@
 
 main.o: main.cpp welcome.h play.h userStruct.h
-	g++ -c $<
+		g++ -c $<
 
 welcome.o: welcome.cpp levels.h userStruct.h
-	g++ -c $<
+		g++ -c $<
 
 play.o: play.cpp userStruct.h laby.h levels.h congrats.h
-	g++ -c $<
+		g++ -c $<
 
 levels.o: levels.cpp levels.h
-	g++ -c $<
+		g++ -c $<
 
 
