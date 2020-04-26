@@ -29,40 +29,47 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     //if user fills out all the empty spaces in the map with 'O' and user's currentLimit is not yet 0
     if (userSelected.currentTravel==spaces[userSelected.currentLevel-1] && userSelected.currentLimit>=0)
     {
-        cout<<"Level "<<userSelected.currentLevel<<"Completed!"<<endl;
-        userSelected.currentLevel+=1;
-        userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
-        userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-        userSelected.currentTravel=0;
-        cout<<"Level Up!"<<endl;
-        cout<<"Now you are at level "<<userSelected.currentLevel<<"."<<endl;
-        cout<<"Continue Playing?"<<endl;
-        cout<<"1. Continue"<<endl;
-        cout<<"2. Quit"<<endl;
-        cout<<"Choose (1) or (2)"<<endl;
-        cout<<"Selection: "<<endl;
-        cin>>selection;
-        if (selection==2)//if user decides to quit game, save user's progress to .txt file
+        if (userSelected.currentLevel+1<11)
         {
-            string filename=userSelected.username+".txt";
-            ofstream fout;
-            fout.open(filename);
-            if (fout.fail())
+            cout<<"Level "<<userSelected.currentLevel<<" Completed!"<<endl;
+            userSelected.currentLevel+=1;
+            userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
+            userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
+            userSelected.currentTravel=0;
+            cout<<"Level Up!"<<endl;
+            cout<<"Now you are at level "<<userSelected.currentLevel<<"."<<endl;
+            cout<<"Continue Playing?"<<endl;
+            cout<<"1. Continue"<<endl;
+            cout<<"2. Quit"<<endl;
+            cout<<"Choose (1) or (2)"<<endl;
+            cout<<"Selection: "<<endl;
+            cin>>selection;
+            if (selection==2)//if user decides to quit game, save user's progress to .txt file
             {
-                cout<<"Error in file opening!"<<endl;
-                exit(1);
+                string filename=userSelected.username+".txt";
+                ofstream fout;
+                fout.open(filename);
+                if (fout.fail())
+                {
+                    cout<<"Error in file opening!"<<endl;
+                    exit(1);
+                }
+                fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
+                stillPlaying=false;
+                return;
             }
-            fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
-            stillPlaying=false;
-            return;
+            else if (selection==1)
+            {
+                playCurrentLevel(userSelected, stillPlaying);
+            }
         }
-        else if (selection==1)
+        else//finished 10 levels
         {
-            playCurrentLevel(userSelected, stillPlaying);
+            stillPlaying=false;
         }
     }
-    //if user fails to complete the level, indicated by not being able tofill out all the empty spaces in the map with 'O' when user's currentLimit has reached 0
-    else if (userSelected.currentTravel<spaces[userSelected.currentLevel-1] && userSelected.currentLimit==0)
+    //if user fails to complete the level, indicated by not being able to fill out all the empty spaces in the map with 'O' when user's currentLimit has reached 0
+    else if ( (userSelected.currentTravel<spaces[userSelected.currentLevel-1] && userSelected.currentLimit==0) || userSelected.currentLimit<0 )
     {
         userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
