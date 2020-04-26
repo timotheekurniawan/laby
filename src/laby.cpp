@@ -12,11 +12,17 @@ void moveLeft(int labyPos,User &userSelected){
     int a=labyPos%10;//misal posisi laby 28, jadi a=8
     for (int i=labyPos-1;i>=labyPos-a;--i)//biar i>=20 (kalo posisi laby 28, brarti kalo move left check index 27 26 25 24 23 22 21 20)
     {
-        if (userSelected.currentMap[i]=='-' || userSelected.currentMap[i]=='O')
+        if (userSelected.currentMap[i]=='-')
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i+1]='O';
             userSelected.currentTravel+=1;
+            userSelected.currentLimit-=1;
+        }
+        else if (userSelected.currentMap[i]=='O')
+        {
+            userSelected.currentMap[i]='*';
+            userSelected.currentMap[i+1]='O';
             userSelected.currentLimit-=1;
         }
         else if (userSelected.currentMap[i]==HEART)
@@ -40,11 +46,17 @@ void moveRight(int labyPos,User &userSelected){
     int a=9-b;//a=9-5=4
     for (int i=labyPos+1;i<=labyPos+a;++i)//biar i<=39 (kalo posisi laby 35, brarti kalo move right cek index 36 37 38 39)
     {
-        if (userSelected.currentMap[i]=='-' || userSelected.currentMap[i]=='O')
+        if (userSelected.currentMap[i]=='-')
         {
             userSelected.currentMap[i]='*';
             userSelected.currentMap[i-1]='O';
             userSelected.currentTravel+=1;
+            userSelected.currentLimit-=1;
+        }
+        else if (userSelected.currentMap[i]=='O')
+        {
+            userSelected.currentMap[i]='*';
+            userSelected.currentMap[i-1]='O';
             userSelected.currentLimit-=1;
         }
         else if (userSelected.currentMap[i]==HEART)
@@ -69,11 +81,17 @@ void moveUp(int labyPos,User &userSelected){
     // {
         for (int i=labyPos-10;i>=a;i-=10)//biar i>=2 (kalo posisi laby 52, brarti kalo move up cek index 42,32,22,12,2)
         {
-            if (userSelected.currentMap[i]=='-' || userSelected.currentMap[i]=='O')
+            if (userSelected.currentMap[i]=='-')
             {
                 userSelected.currentMap[i]='*';
                 userSelected.currentMap[i+10]='O';
                 userSelected.currentTravel+=1;
+                userSelected.currentLimit-=1;
+            }
+            else if (userSelected.currentMap[i]='O')
+            {
+                userSelected.currentMap[i]='*';
+                userSelected.currentMap[i+10]='O';
                 userSelected.currentLimit-=1;
             }
             else if (userSelected.currentMap[i]==HEART)
@@ -99,11 +117,17 @@ void moveDown(int labyPos,User &userSelected){
     // {
         for (int i=labyPos+10;i<=(90+a);i+=10)//biar i<=94 (kalo posisi laby 74, berarti kalo move down cek index 84 94)
         {
-            if (userSelected.currentMap[i]=='-' || userSelected.currentMap[i]=='O')
+            if (userSelected.currentMap[i]=='-')
             {
                 userSelected.currentMap[i]='*';
                 userSelected.currentMap[i-10]='O';
                 userSelected.currentTravel+=1;
+                userSelected.currentLimit-=1;
+            }
+            else if (userSelected.currentMap[i]='O')
+            {
+                userSelected.currentMap[i]='*';
+                userSelected.currentMap[i-10]='O';
                 userSelected.currentLimit-=1;
             }
             else if (userSelected.currentMap[i]==HEART)
