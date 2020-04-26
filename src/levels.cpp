@@ -7,6 +7,7 @@ using namespace std;
 
 //DEFINE HEARTS
 #define HEART "\xE2\x99\xA5"
+// define UNAVAILABLE, LABY, VISITED 
 
 // Map of each level in form of string
 string maps[10] = {
@@ -46,7 +47,7 @@ void randomizeStartPos(string &map){
         startPos = rand() % 100;
         if (map.substr(startPos, 1) == "-")
         {
-            map.replace(startPos, 1, "*");
+            map.replace(startPos, 1, "L");
             break;
         }
     }
@@ -65,7 +66,7 @@ void randomizeHeartPos(string &map){
         heartPos = rand() % 100;
         if (map.substr(heartPos, 1) == "-")
         {
-            map.replace(heartPos, 1, HEART);
+            map.replace(heartPos, 1, "H");
             break;
         }
     }
@@ -96,7 +97,22 @@ void buildMap(string map){
         line = map.substr(i * 10, 10);                      // Get each line. i * 10 to get index 0, 10, and so on.
         for (int b = 0; b < 10; ++b)
         {
-            cout << "|" << line.substr(b, 1);
+            cout << "|";
+            if (line.substr(b, 1) == "-"){
+                cout << " ";
+            }
+            else if (line.substr(b, 1) == "X"){
+                cout << UNAVAILABLE;
+            }
+            else if (line.substr(b, 1) == "L"){
+                cout << LABY;
+            }
+            else if (line.substr(b, 1) == "V"){
+                cout << VISITED;
+            }
+            else if (line.substr(b, 1) == "H"){
+                cout << HEART;
+            }
         }
         cout << "|" << endl;
     }
