@@ -14,21 +14,21 @@ void moveLeft(int labyPos,User &userSelected){
     {
         if (userSelected.currentMap[i]=='-')
         {
-            userSelected.currentMap[i]='*';
+            userSelected.currentMap[i]='L';
             userSelected.currentMap[i+1]='O';
             userSelected.currentTravel+=1;
             userSelected.currentLimit-=1;
         }
-        else if (userSelected.currentMap[i]=='O')
+        else if (userSelected.currentMap[i]=='V')
         {
-            userSelected.currentMap[i]='*';
-            userSelected.currentMap[i+1]='O';
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i+1]='V';
             userSelected.currentLimit-=1;
         }
-        else if (userSelected.currentMap[i]==HEART)
+        else if (userSelected.currentMap[i]=='H')
         {
-            userSelected.currentMap[i]='*';
-            userSelected.currentMap[i+1]='O';
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i+1]='V';
             // userSelected.currentLimit+=1; how many currentLimit should be added if heart is obtained?
             userSelected.currentTravel+=1;
             userSelected.currentLimit-=1;
@@ -48,21 +48,21 @@ void moveRight(int labyPos,User &userSelected){
     {
         if (userSelected.currentMap[i]=='-')
         {
-            userSelected.currentMap[i]='*';
-            userSelected.currentMap[i-1]='O';
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i-1]='V';
             userSelected.currentTravel+=1;
             userSelected.currentLimit-=1;
         }
-        else if (userSelected.currentMap[i]=='O')
+        else if (userSelected.currentMap[i]=='V')
         {
-            userSelected.currentMap[i]='*';
-            userSelected.currentMap[i-1]='O';
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i-1]='V';
             userSelected.currentLimit-=1;
         }
-        else if (userSelected.currentMap[i]==HEART)
+        else if (userSelected.currentMap[i]=='H')
         {
-            userSelected.currentMap[i]='*';
-            userSelected.currentMap[i-1]='O';
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i-1]='V';
             // userSelected.currentLimit+=1;
             userSelected.currentTravel+=1;
             userSelected.currentLimit-=1;
@@ -83,21 +83,21 @@ void moveUp(int labyPos,User &userSelected){
         {
             if (userSelected.currentMap[i]=='-')
             {
-                userSelected.currentMap[i]='*';
-                userSelected.currentMap[i+10]='O';
+                userSelected.currentMap[i]='L';
+                userSelected.currentMap[i+10]='V';
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
             }
-            else if (userSelected.currentMap[i]='O')
+            else if (userSelected.currentMap[i]='V')
             {
-                userSelected.currentMap[i]='*';
-                userSelected.currentMap[i+10]='O';
+                userSelected.currentMap[i]='L';
+                userSelected.currentMap[i+10]='V';
                 userSelected.currentLimit-=1;
             }
-            else if (userSelected.currentMap[i]==HEART)
+            else if (userSelected.currentMap[i]=='H')
             {
-                userSelected.currentMap[i]='*';
-                userSelected.currentMap[i+10]='O';
+                userSelected.currentMap[i]='L';
+                userSelected.currentMap[i+10]='V';
                 // userSelected.currentLimit+=1;
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
@@ -119,21 +119,21 @@ void moveDown(int labyPos,User &userSelected){
         {
             if (userSelected.currentMap[i]=='-')
             {
-                userSelected.currentMap[i]='*';
-                userSelected.currentMap[i-10]='O';
+                userSelected.currentMap[i]='L';
+                userSelected.currentMap[i-10]='V';
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
             }
-            else if (userSelected.currentMap[i]='O')
+            else if (userSelected.currentMap[i]='V')
             {
-                userSelected.currentMap[i]='*';
-                userSelected.currentMap[i-10]='O';
+                userSelected.currentMap[i]='L';
+                userSelected.currentMap[i-10]='V';
                 userSelected.currentLimit-=1;
             }
-            else if (userSelected.currentMap[i]==HEART)
+            else if (userSelected.currentMap[i]=='H')
             {
-                userSelected.currentMap[i]='*';
-                userSelected.currentMap[i-10]='O';
+                userSelected.currentMap[i]='L';
+                userSelected.currentMap[i-10]='V';
                 // userSelected.currentLimit+=1;
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
