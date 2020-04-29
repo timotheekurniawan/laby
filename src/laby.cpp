@@ -135,7 +135,7 @@ void moveDown(int labyPos,User &userSelected){
             {
                 userSelected.currentMap[i]='L';
                 userSelected.currentMap[i-10]='V';
-                // userSelected.currentLimit+=1;
+                userSelected.currentLimit+=10;
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
             }
