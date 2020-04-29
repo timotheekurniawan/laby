@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "play.h"
 #include "userStruct.h"
 #include "laby.h"
 #include "levels.h"

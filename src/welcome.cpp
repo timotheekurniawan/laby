@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "welcome.h"
 #include "userStruct.h"
 #include "levels.h"
 using namespace std;

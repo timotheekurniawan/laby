@@ -102,13 +102,13 @@ void buildMap(string map){
                 cout << " ";
             }
             else if (line.substr(b, 1) == "X"){
-                cout << UNAVAILABLE;
+                cout << "X";
             }
             else if (line.substr(b, 1) == "L"){
-                cout << LABY;
+                cout << "L";
             }
             else if (line.substr(b, 1) == "V"){
-                cout << VISITED;
+                cout << "V";
             }
             else if (line.substr(b, 1) == "H"){
                 cout << HEART;

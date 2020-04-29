@@ -1,9 +1,9 @@
 //laby.h
 //contains function for movement of Laby
-#include "userStruct.h"
 #ifndef LABY_H
 #define LABY_H
-
+#include "userStruct.h"
+#include "levels.h"
 void moveLeft(int labyPos,User &userSelected);
 void moveRight(int labyPos,User &userSelected);
 void moveUp(int labyPos,User &userSelected);

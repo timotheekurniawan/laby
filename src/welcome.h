@@ -1,8 +1,9 @@
 //welcome.h
-#include <string>
-#include "userStruct.h"
 #ifndef WELCOME_H
 #define WELCOME_H
+#include <string>
+#include "userStruct.h"
+#include "levels.h"
 
 void addToUsernameList(std::string username);
 void displayExistingUsers();
