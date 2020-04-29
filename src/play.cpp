@@ -112,7 +112,12 @@ void playGame(User &userSelected){
     bool stillPlaying=true;
     while (userSelected.currentLevel<11 && stillPlaying)
     {
-        playCurrentLevel(userSelected,stillPlaying);
+        playCurrentLevel(userSelected, stillPlaying);
     }
-    completedGame(userSelected);
+    if (userSelected.currentLevel == 11){
+        completedGame(userSelected);
+    }
+    else {
+        return;
+    }
 }
