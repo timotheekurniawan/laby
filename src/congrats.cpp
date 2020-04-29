@@ -10,7 +10,7 @@ using namespace std;
 // Function used when a user has finished all 10 levels.
 // It displays congratulation message and asks the user whether to restart the game or quit the game.
 // - If the user restarts game, it resets user's game progress(currentLevel, currentMap, and currentLimit) to level 1
-//   PlayGame(username) to play the game again.
+//   playGame(username) to play the game again.
 // - If the user quits game, the user's game progress(currentLevel,currentMap,etc.) is stored in username.txt.
 //input: struct of userSelected (pass by referenced)
 void completedGame(User &userSelected){
@@ -33,7 +33,7 @@ void completedGame(User &userSelected){
         userSelected.currentTravel=0;
         fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
         fout.close();
-        PlayGame(userSelected);
+        playGame(userSelected);
     }
     else if (selection==2)
     {

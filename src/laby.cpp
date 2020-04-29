@@ -1,4 +1,5 @@
 #include <iostream>
+#include "laby.h"
 #include "userStruct.h"
 #include "levels.h"
 
@@ -88,7 +89,7 @@ void moveUp(int labyPos,User &userSelected){
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
             }
-            else if (userSelected.currentMap[i]='V')
+            else if (userSelected.currentMap[i]=='V')
             {
                 userSelected.currentMap[i]='L';
                 userSelected.currentMap[i+10]='V';
@@ -124,7 +125,7 @@ void moveDown(int labyPos,User &userSelected){
                 userSelected.currentTravel+=1;
                 userSelected.currentLimit-=1;
             }
-            else if (userSelected.currentMap[i]='V')
+            else if (userSelected.currentMap[i]=='V')
             {
                 userSelected.currentMap[i]='L';
                 userSelected.currentMap[i-10]='V';

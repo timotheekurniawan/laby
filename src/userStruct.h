@@ -1,9 +1,8 @@
 // userStruct.h
 // Struct to hold 
-#include <string>
 #ifndef USER_STRUCT
 #define USER_STRUCT
-
+#include <string>
 struct User {
     std::string username;              
     int currentLevel;             // Current currentLevel of user 
