@@ -16,7 +16,7 @@ void moveLeft(int labyPos,User &userSelected){
         if (userSelected.currentMap[i]=='-')
         {
             userSelected.currentMap[i]='L';
-            userSelected.currentMap[i+1]='O';
+            userSelected.currentMap[i+1]='V';
             userSelected.currentTravel+=1;
             userSelected.currentLimit-=1;
         }
@@ -152,9 +152,9 @@ void moveDown(int labyPos,User &userSelected){
 //moveLeft(),moveRight(),moveUp(), and moveDown() to move to respective directions
 void getMove(User &userSelected){
     int move;
-    int labyPos=(userSelected.currentMap).find('*');//to find postion(index) of laby in map represented by a string
-    // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-    cout<<labyPos<<endl;
+    int labyPos=(userSelected.currentMap).find('L');//to find postion(index) of laby in map represented by a string
+    // // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
+    // cout<<labyPos<<endl;
     cout<<"1. Left"<<endl;
     cout<<"2. Right"<<endl;
     cout<<"3. Up"<<endl;
