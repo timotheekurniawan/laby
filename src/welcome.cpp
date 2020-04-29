@@ -14,7 +14,7 @@ using namespace std;
 // Input    : - new username
 void addToUsernameList(string username){
     ofstream fout;
-    fout.open("usernameList.txt");
+    fout.open("usernameList.txt",ios::app);
     if (fout.fail()){
         cout << "Error in file opening!" << endl;
         exit(1);
@@ -29,7 +29,7 @@ void displayExistingUsers(){
     int count = 1;
     string username;
     ifstream fin;
-    fin.open("usernameList.txt",ios::app);
+    fin.open("usernameList.txt");
     while (fin >> username){
         cout << count << ". " << username << endl;
         ++count;
