@@ -29,7 +29,7 @@ void displayExistingUsers(){
     int count = 1;
     string username;
     ifstream fin;
-    fin.open("usernameList.txt");
+    fin.open("usernameList.txt",ios::app);
     while (fin >> username){
         cout << count << ". " << username << endl;
         ++count;
@@ -60,7 +60,7 @@ void getUser(string chosenUsername, User &chosenUser){
 // addToUsernameList() to add the new username to usersList.txt
 // Input    : - new username
 //            - newUser (pass by referenced) 
-void createUser(string newUsername, User &newUser){
+void createUser(string newUsername,User *& newUser){
     string file=newUsername+".txt";
     ofstream fout;
     fout.open(file);
@@ -71,15 +71,35 @@ void createUser(string newUsername, User &newUser){
     }
     addToUsernameList(newUsername);
 
-    newUser.username = newUsername;
-    newUser.currentLevel = 1;
-    newUser.currentMap = getEmptyMap(newUser.currentLevel);
-    newUser.currentLimit = getInitialLimit(newUser.currentLevel);
-    newUser.currentTravel=0;
-
-    fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.currentTravel<<endl;
+    newUser -> username= newUsername;
+    newUser -> currentLevel= 1;
+    newUser -> currentMap = getEmptyMap(newUser->currentLevel);
+    newUser -> currentLimit= getInitialLimit(newUser->currentLevel);
+    newUser -> currentTravel= 0;
+    fout<<newUser->username<<" "<<newUser->currentLevel<<" "<<newUser->currentMap<<" "<<newUser->currentLimit<<" "<<newUser->currentTravel<<endl;
     fout.close();
 }
+
+// void createUser(string newUsername, User &newUser){
+//     string file=newUsername+".txt";
+//     ofstream fout;
+//     fout.open(file);
+//     if (fout.fail())
+//     {
+//         cout<<"Error in file opening!"<<endl;
+//         exit(1);
+//     }
+//     addToUsernameList(newUsername);
+
+//     newUser.username = newUsername;
+//     newUser.currentLevel = 1;
+//     newUser.currentMap = getEmptyMap(newUser.currentLevel);
+//     newUser.currentLimit = getInitialLimit(newUser.currentLevel);
+//     newUser.currentTravel=0;
+
+//     fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.currentTravel<<endl;
+//     fout.close();
+// }
 
 
 // Function used if the player choose New Game.
@@ -88,12 +108,22 @@ void createUser(string newUsername, User &newUser){
 // Return   : the newly created User
 User newGame(){
     string newUsername;
-    User newUser;
+    User *newUser=new User;
     cout << "Enter a new username: ";
     cin >> newUsername;
-    createUser(newUsername, newUser);
-    return newUser;
+    createUser(newUsername,newUser);
+    return *newUser;
 }
+
+// User newGame(){
+//     string newUsername;
+//     User newUser;
+//     cout << "Enter a new username: ";
+//     cin >> newUsername;
+//     createUser(newUsername, newUser);
+//     return newUser;
+// }
+
 
 // Function used if the player choose Continue Game.
 // The player chooses the user. 

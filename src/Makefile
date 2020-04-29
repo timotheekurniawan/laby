@@ -21,3 +21,7 @@ levels.o: levels.cpp levels.h
 congrats.o: congrats.cpp congrats.h userStruct.h levels.h play.h
 		g++ $(FLAGS) -c $<
 
+clean:
+		rm -f *.o
+
+.PHONY: clean 
