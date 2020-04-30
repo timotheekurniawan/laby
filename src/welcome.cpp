@@ -107,9 +107,10 @@ bool usernameExist(string newUsername){
     ifstream fin;
     string existingUsername;
     fin.open("usernameList.txt");
+    
+    // If usernameList.txt does not exist, returns dne; 
     if (fin.fail()){
-        cout << "Error in opening usernameList" << endl;
-        exit(1);
+        return false;
     }
 
     while (fin >> existingUsername){
@@ -119,7 +120,6 @@ bool usernameExist(string newUsername){
     }
     return false;
 }
-
 
 
 // Function used if the player choose New Game.
@@ -138,7 +138,7 @@ User newGame(){
             return *newUser;
         }
         cout << "Username already exist." << endl;
-        cout << "Enter a new username: " << endl;
+        cout << "Enter a new username: ";
     }
     
 }
