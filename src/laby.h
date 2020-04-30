@@ -8,7 +8,7 @@ void moveLeft(int labyPos,User &userSelected);
 void moveRight(int labyPos,User &userSelected);
 void moveUp(int labyPos,User &userSelected);
 void moveDown(int labyPos,User &userSelected);
-void getMove(User &userSelected);
+void getMove(User &userSelected,bool &stillPlaying);
 
 #endif
 
