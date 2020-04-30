@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "laby.h"
 #include "userStruct.h"
 #include "levels.h"
@@ -150,7 +151,7 @@ void moveDown(int labyPos,User &userSelected){
 //function to get user input of move selection
 //getIntialLimit() to get move limit of user's respective level
 //moveLeft(),moveRight(),moveUp(), and moveDown() to move to respective directions
-void getMove(User &userSelected){
+void getMove(User &userSelected,bool &stillPlaying){
     int move;
     int labyPos=(userSelected.currentMap).find('L');//to find postion(index) of laby in map represented by a string
     // // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
@@ -160,6 +161,7 @@ void getMove(User &userSelected){
     cout<<"3. Up"<<endl;
     cout<<"4. Down"<<endl;
     cout<<"Choose (1), (2), (3), or (4)"<<endl;
+    cout<<"If you want to quit and save game, choose (5)"<<endl;
     cout<<"Select Move: ";
     cin>>move;
     // userSelected.currentLimit-=1;
@@ -179,4 +181,18 @@ void getMove(User &userSelected){
     {
         moveDown(labyPos,userSelected);
     } 
+    else if (move==5)//if the user decides to quit in the middle of the game, progess will still be saved
+    {
+        string filename=userSelected.username+".txt";
+        ofstream fout;
+        fout.open(filename);
+        if (fout.fail())
+        {
+            cout<<"Error in file opening!"<<endl;
+            exit(1);
+        }
+        fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
+        fout.close();
+        stillPlaying=false;
+    }
 }
