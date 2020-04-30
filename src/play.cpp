@@ -20,11 +20,11 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     int selection;
     // randomizeStartPos(userSelected.currentMap);
     // randomizeHeartPos(userSelected.currentMap);
-    while (userSelected.currentLimit>0 && userSelected.currentTravel<spaces[userSelected.currentLevel-1])
+    while (userSelected.currentLimit>0 && userSelected.currentTravel<spaces[userSelected.currentLevel-1] && stillPlaying)
     {
         buildMap(userSelected.currentMap);
         cout<<"Moves Remaining: "<<userSelected.currentLimit<<endl;
-        getMove(userSelected);
+        getMove(userSelected,stillPlaying);
     }
 
     //if user fills out all the empty spaces in the map with 'O' and user's currentLimit is not yet 0
