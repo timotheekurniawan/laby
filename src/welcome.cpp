@@ -101,6 +101,26 @@ void createUser(string newUsername,User *& newUser){
 //     fout.close();
 // }
 
+// Function to check if the username is in the usernamelist
+// returns true if exist, returns false if not exist
+bool usernameExist(string newUsername){
+    ifstream fin;
+    string existingUsername;
+    fin.open("usernameList.txt");
+    if (fin.fail()){
+        cout << "Error in opening usernameList" << endl;
+        exit(1);
+    }
+
+    while (fin >> existingUsername){
+        if (existingUsername == newUsername){
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 // Function used if the player choose New Game.
 // It asks for a new username and create the user
@@ -108,11 +128,19 @@ void createUser(string newUsername,User *& newUser){
 // Return   : the newly created User
 User newGame(){
     string newUsername;
-    User *newUser=new User;
+    User *newUser = new User;
     cout << "Enter a new username: ";
-    cin >> newUsername;
-    createUser(newUsername,newUser);
-    return *newUser;
+    
+    while (true){
+        cin >> newUsername;
+        if (usernameExist(newUsername) == false){
+            createUser(newUsername, newUser);
+            return *newUser;
+        }
+        cout << "Username already exist." << endl;
+        cout << "Enter a new username: " << endl;
+    }
+    
 }
 
 // User newGame(){
