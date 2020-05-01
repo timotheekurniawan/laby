@@ -10,16 +10,14 @@ using namespace std;
 // define UNAVAILABLE, LABY, VISITED 
 
 // Map of each level in form of string
-string maps[10] = {
-  "------------------------------------------------------------------X---------------------------------",
-  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+string maps[10] = {"XXXXXXXXXX---------X-X-XX-X----X---------X-XX-X-X-----X-X-X-------X-X--X---XX-X--XX-----X-XXXXXXXXXX","---XXXX----X-XXXX-X---------X-XX-XX---X----XX-XXX--X-XX------X-XXXXX---X-----X---XXXXX-X---------X--","XX----XXXXXX-X----XXXX------XXXXXX--XXXXXXXX--XXXX--XX--XX-----X--X---X--------XXX---X--XXXXXX--XXXX","X---X----X--------------X-X-X-----------------X----X-------X------------X-------X-------XXXXX----XXX","XXXX--XXXXXXXX--XXXXXX------XXX--------XX---X-----X---X-X---------X-----X-----------------XX-----X--"
 };
 
 // Move limit of each level
-int limits[10] = {100, 200};
+int limits[10] = {500, 500, 500, 500, 500, 500, 500, 500, 500, 500};
 
 // Spaces to be traveled by laby of each level
-int spaces[10] = {67, 45};
+int spaces[10] = {57, 61, 47, 81, 68};
 
 // Function to get the initial limit of the level
 // Input    : - level
