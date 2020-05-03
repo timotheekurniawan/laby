@@ -1,3 +1,5 @@
+//laby.cpp
+//this file contains functions to move the character Laby in the map
 #include <iostream>
 #include <fstream>
 #include "laby.h"
@@ -11,8 +13,11 @@ using namespace std;
 
 //function to move laby to the left
 void moveLeft(int labyPos,User &userSelected){
-    int a=labyPos%10;//misal posisi laby 28, jadi a=8
-    for (int i=labyPos-1;i>=labyPos-a;--i)//biar i>=20 (kalo posisi laby 28, brarti kalo move left check index 27 26 25 24 23 22 21 20)
+    int a=labyPos%10;//e.g if laby is at index 32, a=2
+
+    //this loop iterates every 1 index before the current index until it hits the left boundary of the map
+    //e.g if laby is at index 19, it will check index 18,17,16,.. until index 10
+    for (int i=labyPos-1;i>=labyPos-a;--i)
     {
         if (userSelected.currentMap[i]=='-')
         {
@@ -44,9 +49,12 @@ void moveLeft(int labyPos,User &userSelected){
 
 //function to move laby to the right
 void moveRight(int labyPos,User &userSelected){
-    int b=labyPos%10;//misal posisi laby 35, brarti b=5
-    int a=9-b;//a=9-5=4
-    for (int i=labyPos+1;i<=labyPos+a;++i)//biar i<=39 (kalo posisi laby 35, brarti kalo move right cek index 36 37 38 39)
+    int b=labyPos%10;//e.g. laby is at index 35, so b will be 5
+    int a=9-b;//this helps to get the right boundary of the map
+
+    //this loop iterates to every 1 index after the current index until it hits the right boundary of the map
+    //e.g laby is at index 0, so it will check index 1,2,3, .. until index 9
+    for (int i=labyPos+1;i<=labyPos+a;++i)
     {
         if (userSelected.currentMap[i]=='-')
         {
@@ -78,74 +86,74 @@ void moveRight(int labyPos,User &userSelected){
 
 //function to move laby upwards
 void moveUp(int labyPos,User &userSelected){
-    int a=labyPos%10;//misal posisi laby 52, brarti a=2
-    // if (labyPos>9)
-    // {
-        for (int i=labyPos-10;i>=a;i-=10)//biar i>=2 (kalo posisi laby 52, brarti kalo move up cek index 42,32,22,12,2)
+    int a=labyPos%10;//e.g laby is at index 5, then a=5
+
+    //this loop iterates 10 indexes before the current index until it hits the upper boundary of the map
+    //e.g. laby is at index 45, it will check index 30,25,.. until index 5
+    for (int i=labyPos-10;i>=a;i-=10)
+    {
+        if (userSelected.currentMap[i]=='-')
         {
-            if (userSelected.currentMap[i]=='-')
-            {
-                userSelected.currentMap[i]='L';
-                userSelected.currentMap[i+10]='V';
-                userSelected.currentTravel+=1;
-                userSelected.currentLimit-=1;
-            }
-            else if (userSelected.currentMap[i]=='V')
-            {
-                userSelected.currentMap[i]='L';
-                userSelected.currentMap[i+10]='V';
-                userSelected.currentLimit-=1;
-            }
-            else if (userSelected.currentMap[i]=='H')
-            {
-                userSelected.currentMap[i]='L';
-                userSelected.currentMap[i+10]='V';
-                // userSelected.currentLimit+=1;
-                userSelected.currentTravel+=1;
-                userSelected.currentLimit-=1;
-            }
-            else if (userSelected.currentMap[i]=='X')
-            {
-                break;
-            }
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i+10]='V';
+            userSelected.currentTravel+=1;
+            userSelected.currentLimit-=1;
         }
-    // }
+        else if (userSelected.currentMap[i]=='V')
+        {
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i+10]='V';
+            userSelected.currentLimit-=1;
+        }
+        else if (userSelected.currentMap[i]=='H')
+        {
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i+10]='V';
+            // userSelected.currentLimit+=1;
+            userSelected.currentTravel+=1;
+            userSelected.currentLimit-=1;
+        }
+        else if (userSelected.currentMap[i]=='X')
+        {
+            break;
+        }
+    }
 }
 
 //function to move laby downwards
 void moveDown(int labyPos,User &userSelected){
-    int a=labyPos%10;//misal posisi laby 74, brarti a=4
-    // if (labyPos<90)
-    // {
-        for (int i=labyPos+10;i<=(90+a);i+=10)//biar i<=94 (kalo posisi laby 74, berarti kalo move down cek index 84 94)
+    int a=labyPos%10;//e.g laby is at index 5, a will be 5
+
+    //this loop iterates 10 indexes before the current index until it hits the bottom boundary of the map
+    //e.g laby is at index 5, it will check index 15,25,35,.. until index 95
+    for (int i=labyPos+10;i<=(90+a);i+=10)
+    {
+        if (userSelected.currentMap[i]=='-')
         {
-            if (userSelected.currentMap[i]=='-')
-            {
-                userSelected.currentMap[i]='L';
-                userSelected.currentMap[i-10]='V';
-                userSelected.currentTravel+=1;
-                userSelected.currentLimit-=1;
-            }
-            else if (userSelected.currentMap[i]=='V')
-            {
-                userSelected.currentMap[i]='L';
-                userSelected.currentMap[i-10]='V';
-                userSelected.currentLimit-=1;
-            }
-            else if (userSelected.currentMap[i]=='H')
-            {
-                userSelected.currentMap[i]='L';
-                userSelected.currentMap[i-10]='V';
-                userSelected.currentLimit+=10;
-                userSelected.currentTravel+=1;
-                userSelected.currentLimit-=1;
-            }
-            else if (userSelected.currentMap[i]=='X')
-            {
-                break;
-            }
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i-10]='V';
+            userSelected.currentTravel+=1;
+            userSelected.currentLimit-=1;
         }
-    // }
+        else if (userSelected.currentMap[i]=='V')
+        {
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i-10]='V';
+            userSelected.currentLimit-=1;
+        }
+        else if (userSelected.currentMap[i]=='H')
+        {
+            userSelected.currentMap[i]='L';
+            userSelected.currentMap[i-10]='V';
+            userSelected.currentLimit+=10;
+            userSelected.currentTravel+=1;
+            userSelected.currentLimit-=1;
+        }
+        else if (userSelected.currentMap[i]=='X')
+        {
+            break;
+        }
+    }
 }
 
 //function to get user input of move selection
@@ -155,7 +163,6 @@ void getMove(User &userSelected,bool &stillPlaying){
     int move;
     int labyPos=(userSelected.currentMap).find('L');//to find postion(index) of laby in map represented by a string
     // // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-    // cout<<labyPos<<endl;
     cout<<"1. Left"<<endl;
     cout<<"2. Right"<<endl;
     cout<<"3. Up"<<endl;
@@ -164,7 +171,6 @@ void getMove(User &userSelected,bool &stillPlaying){
     cout<<"If you want to quit and save game, choose (5)"<<endl;
     cout<<"Select Move: ";
     cin>>move;
-    // userSelected.currentLimit-=1;
     if (move==1)
     {
         moveLeft(labyPos,userSelected);

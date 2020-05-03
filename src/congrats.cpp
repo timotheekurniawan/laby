@@ -1,3 +1,6 @@
+//congrats.cpp
+//this file contains the function when a player finishes all 10 levels of the game
+//displays congratulations/completion message
 #include <iostream>
 #include <fstream>
 #include "congrats.h"
