@@ -129,13 +129,17 @@ bool usernameExist(string newUsername){
 User newGame(){
     string newUsername;
     User *newUser = new User;
+    User currentUser;
     cout << "Enter a new username: ";
     
     while (true){
         cin >> newUsername;
         if (usernameExist(newUsername) == false){
             createUser(newUsername, newUser);
-            return *newUser;
+            delete(newUser);                                    // free the memory
+            getUser(newUsername, currentUser);                  // get the user
+            // return *newUser;
+            return currentUser;
         }
         cout << "Username already exist." << endl;
         cout << "Enter a new username: ";
