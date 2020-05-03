@@ -7,7 +7,10 @@ using namespace std;
 
 //DEFINE HEARTS
 #define HEART "\xE2\x99\xA5"
-// define UNAVAILABLE, LABY, VISITED 
+#define UNAVAILABLE "\xe2\x96\x88"	
+#define LABY "\xe2\x98\x85"
+#define VISITED "\xe2\x97\xa6"
+
 
 // Map of each level in form of string
 string maps[10] = {
@@ -16,7 +19,7 @@ string maps[10] = {
 "XX----XXXXXX-X----XXXX------XXXXXX--XXXXXXXX--XXXX--XX--XX-----X--X---X--------XXX---X--XXXXXX--XXXX",
 "X---X----X--------------X-X-X-----------------X----X-------X------------X-------X-------XXXXX----XXX",
 "XXXX--XXXXXXXX--XXXXXX------XXX--------XX---X-----X---X-X---------X-----X-----------------XX-----X--",
-"X---X-------X---XX-----------X--X----X--X-X--X---------XXX-X-XXX-X------------X------XX-----XX-----X",
+"X---X-------X---XX-----------X--X----X--X-X--X---------XXX-X-XXX-X------------X---XX-XX-----XX-----X",
 "-----XXXXX-XX---XX---X----X-------------XX------X-XXXXX-X---------XXX--XXXX-X---------X---XXXXXXXXXX",
 "X--------X----XX------XXXXXX---XX----XX---X-XX-X--X--------XX---XX---XXX------XX---XXXX-------XX----",
 "-----XXXXX-XX---XX---X----X-------------XX------X-XXXXX-X---------XXX--XXXX-XXX--XXXX-X---------X---",
@@ -27,7 +30,7 @@ string maps[10] = {
 int limits[10] = {500, 500, 500, 500, 500, 500, 500, 500, 500, 500};
 
 // Spaces to be traveled by laby of each level
-int spaces[10] = {57, 61, 47, 81, 68, 75, 61, 66, 63, 58};
+int spaces[10] = {57, 61, 47, 81, 68, 73, 61, 66, 63, 58};
 
 // Function to get the initial limit of the level
 // Input    : - level
@@ -110,13 +113,13 @@ void buildMap(string map){
                 cout << " ";
             }
             else if (line.substr(b, 1) == "X"){
-                cout << "X";
+                cout << UNAVAILABLE;
             }
             else if (line.substr(b, 1) == "L"){
-                cout << "L";
+                cout << LABY;
             }
             else if (line.substr(b, 1) == "V"){
-                cout << "V";
+                cout << VISITED;
             }
             else if (line.substr(b, 1) == "H"){
                 cout << HEART;
@@ -129,4 +132,8 @@ void buildMap(string map){
         cout << " -";
     }    
     cout << endl;                     
+}
+
+int main(){
+    buildMap(maps[9]);
 }
