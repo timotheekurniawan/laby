@@ -133,7 +133,3 @@ void buildMap(string map){
     }    
     cout << endl;                     
 }
-
-int main(){
-    buildMap(maps[9]);
-}
