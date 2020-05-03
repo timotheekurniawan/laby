@@ -24,6 +24,7 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     {
         buildMap(userSelected.currentMap);
         cout<<"Moves Remaining: "<<userSelected.currentLimit<<endl;
+        cout << "Covered: " << userSelected.currentTravel << endl;
         getMove(userSelected,stillPlaying);
     }
 
@@ -36,7 +37,7 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
             userSelected.currentLevel+=1;
             userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
             userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-            userSelected.currentTravel=0;
+            userSelected.currentTravel=1;
             cout<<"Level Up!"<<endl;
             cout<<"Now you are at level "<<userSelected.currentLevel<<"."<<endl;
             cout<<"Continue Playing?"<<endl;
@@ -74,7 +75,7 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     {
         userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-        userSelected.currentTravel=0;
+        userSelected.currentTravel=1;
         cout<<"No moves left!"<<endl;
         cout<<"Level failed!"<<endl;
         cout<<"Retry Level?"<<endl;

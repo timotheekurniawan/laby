@@ -75,7 +75,7 @@ void createUser(string newUsername,User *& newUser){
     newUser -> currentLevel= 1;
     newUser -> currentMap = getEmptyMap(newUser->currentLevel);
     newUser -> currentLimit= getInitialLimit(newUser->currentLevel);
-    newUser -> currentTravel= 0;
+    newUser -> currentTravel= 1;
     fout<<newUser->username<<" "<<newUser->currentLevel<<" "<<newUser->currentMap<<" "<<newUser->currentLimit<<" "<<newUser->currentTravel<<endl;
     fout.close();
 }
@@ -143,14 +143,6 @@ User newGame(){
     
 }
 
-// User newGame(){
-//     string newUsername;
-//     User newUser;
-//     cout << "Enter a new username: ";
-//     cin >> newUsername;
-//     createUser(newUsername, newUser);
-//     return newUser;
-// }
 
 
 // Function used if the player choose Continue Game.
