@@ -70,6 +70,16 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
         }
         else//finished 10 levels
         {
+            userSelected.currentLevel+=1;
+            string filename=userSelected.username+".txt";
+            ofstream fout;
+            fout.open(filename);
+            if (fout.fail())
+            {
+                cout<<"Error in file opening!"<<endl;
+                exit(1);
+            }
+            fout<<userSelected.username<<" "<<userSelected.currentLevel<<endl;
             stillPlaying=false;
         }
     }

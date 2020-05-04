@@ -164,6 +164,7 @@ User continueGame(){
     User chosenUser;
     cout << "Choose an existing user:" << endl;
     displayExistingUsers();
+    cout << "Selection: ";
     cin >> chosenUsernameNumber;
     for (int i = 0; i < chosenUsernameNumber; ++i){
         fin >> chosenUsername;
