@@ -25,14 +25,14 @@ string maps[10] = {
 "X---X-------X---XX-----------X--X----X--X-X--X---------XXX-X-XXX-X------------X---XX-XX-----XX-----X",
 "X--------X----XX------XXXXXX---XX----XX---X-XX-X--X--------XX---XX---XXX------XX---XXXX-------XX----",
 "-----XXXXX-XX---XX---X----X-------------XX------X-XXXXX-X---------XXX--XXXX-XXX--XXXX-X---------X---",
-"XXX------X----XXXX-X--X----X-X--X-XX---XX-X--XXXXX--XX-------X--X-XX---X--X-XX------X-----XXX------X",
+"XXX------X----XXXX-X--X----X-X--X-XX---XX-X--XXXXX--XX-------X--X-XX---X--X-XX------X-----XXX------X"
 };
 
 // Move limit of each level
-int limits[10] = {500, 500, 500, 500, 500, 500, 500, 500, 500, 500};
+int limits[10] = {65, 115, 75, 75, 145, 100, 125, 105, 120, 85};
 
 // Spaces to be traveled by laby of each level
-int spaces[10] = {55,57, 61, 48, 81, 68, 73, 66, 64, 62};
+int spaces[10] = {55, 57, 61, 48, 81, 68, 73, 66, 64, 62};
 
 // Function to get the initial limit of the level
 // Input    : - level
