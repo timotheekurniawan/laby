@@ -169,6 +169,7 @@ void getMove(User &userSelected,bool &stillPlaying){
     cout<<"4. Down"<<endl;
     cout<<"Choose (1), (2), (3), or (4)"<<endl;
     cout<<"If you want to quit and save game, choose (5)"<<endl;
+    cout<<endl;
     cout<<"Select Move: ";
     cin>>move;
     if (move==1)

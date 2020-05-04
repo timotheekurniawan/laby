@@ -25,7 +25,9 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     while (userSelected.currentLimit>0 && userSelected.currentTravel<spaces[userSelected.currentLevel-1] && stillPlaying)
     {
         buildMap(userSelected.currentMap);
+        cout<<endl;
         cout<<"Moves Remaining: "<<userSelected.currentLimit<<endl;
+        cout<<endl;
         getMove(userSelected,stillPlaying);
     }
 
