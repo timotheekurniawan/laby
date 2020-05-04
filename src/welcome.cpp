@@ -182,7 +182,7 @@ User welcome(){
     cout << "Choose (1) or (2)" << endl;
     cout << "1. New Game" << endl;
     cout << "2. Continue Game" << endl;
-
+    cout << "Selection: ";
     cin >> game;
     if (game == "1")
     {
