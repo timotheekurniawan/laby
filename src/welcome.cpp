@@ -50,7 +50,7 @@ void getUser(string chosenUsername, User &chosenUser){
         cout<<"Error in file opening!"<<endl;
         exit(1);
     }
-    fin>>chosenUser.username>>chosenUser.currentLevel>>chosenUser.currentMap>>chosenUser.currentLimit>>chosenUser.currentTravel;
+    fin>>chosenUser.username>>chosenUser.currentLevel>>chosenUser.currentMap>>chosenUser.currentLimit>>chosenUser.currentTravel>>chosenUser.firstHeart;
     fin.close();
     return;
 }
@@ -76,7 +76,8 @@ void createUser(string newUsername,User *& newUser){
     newUser -> currentMap = getEmptyMap(newUser->currentLevel);
     newUser -> currentLimit= getInitialLimit(newUser->currentLevel);
     newUser -> currentTravel= 1;
-    fout<<newUser->username<<" "<<newUser->currentLevel<<" "<<newUser->currentMap<<" "<<newUser->currentLimit<<" "<<newUser->currentTravel<<endl;
+    newUser -> firstHeart = true;
+    fout<<newUser->username<<" "<<newUser->currentLevel<<" "<<newUser->currentMap<<" "<<newUser->currentLimit<<" "<<newUser->currentTravel<<" "<<newUser->firstHeart;
     fout.close();
 }
 
@@ -179,11 +180,10 @@ User continueGame(){
 User welcome(){
     string game;
     User userPlaying;
-    cout << "Welcome to Labyrinth!" << endl;
-    cout << "Choose (1) or (2)" << endl;
+    cout << endl << endl << "Welcome to Labyrinth!" << endl << endl << endl;
     cout << "1. New Game" << endl;
     cout << "2. Continue Game" << endl;
-    cout << "Selection: ";
+    cout << "Select: ";
     cin >> game;
     if (game == "1")
     {
@@ -193,5 +193,6 @@ User welcome(){
     {
         userPlaying = continueGame();
     }
+    cout << endl << endl;
     return userPlaying;
 }

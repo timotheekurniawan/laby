@@ -77,7 +77,7 @@ void randomizeHeartPos(string &map){
     while (true)
     {
         heartPos = rand() % 100;
-        if (map.substr(heartPos, 1) == "-")
+        if (map.substr(heartPos, 1) == "-" || map.substr(heartPos, 1) == "V")
         {
             map.replace(heartPos, 1, "H");
             break;

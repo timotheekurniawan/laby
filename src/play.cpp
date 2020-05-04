@@ -24,6 +24,7 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     // randomizeHeartPos(userSelected.currentMap);
     while (userSelected.currentLimit>0 && userSelected.currentTravel<spaces[userSelected.currentLevel-1] && stillPlaying)
     {
+        cout << "---------- Level " << userSelected.currentLevel << " -----------" << endl << endl;
         buildMap(userSelected.currentMap);
         cout<<endl;
         cout<<"Moves Remaining: "<<userSelected.currentLimit<<endl;
@@ -36,18 +37,19 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
     {
         if (userSelected.currentLevel+1<11)
         {
-            cout<<"Level "<<userSelected.currentLevel<<" Completed!"<<endl;
+            cout<<"Level "<<userSelected.currentLevel<<" Completed!"<<endl << endl;
             userSelected.currentLevel+=1;
             userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
             userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
             userSelected.currentTravel=1;
-            cout<<"Level Up!"<<endl;
-            cout<<"Now you are at level "<<userSelected.currentLevel<<"."<<endl;
-            cout<<"Continue Playing?"<<endl;
+            userSelected.firstHeart=true;
+            // cout<<"Level Up!"<<endl;
+            // cout<<"Now you are at level "<<userSelected.currentLevel<<"."<<endl;
+            // cout<<"Continue Playing?"<<endl;
             cout<<"1. Continue"<<endl;
             cout<<"2. Quit"<<endl;
-            cout<<"Choose (1) or (2)"<<endl;
-            cout<<"Selection: "<<endl;
+            // cout<<"Choose (1) or (2)"<<endl;
+            cout<<"Select: "<<endl;
             cin>>selection;
             if (selection==2)//if user decides to quit game, save user's progress to .txt file
             {
@@ -89,13 +91,14 @@ void playCurrentLevel(User &userSelected,bool &stillPlaying){
         userSelected.currentMap=getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
         userSelected.currentTravel=1;
-        cout<<"No moves left!"<<endl;
-        cout<<"Level failed!"<<endl;
-        cout<<"Retry Level?"<<endl;
+        userSelected.firstHeart=true;
+        // cout<<"No moves left!"<<endl;
+        cout<<"Level " << userSelected.currentLevel << " failed!"<<endl << endl;
+        // cout<<"Retry Level?"<<endl;
         cout<<"1. Retry"<<endl;
         cout<<"2. Quit"<<endl;
-        cout<<"Choose (1) or (2)"<<endl;
-        cout<<"Selection: "<<endl;
+        // cout<<"Choose (1) or (2)"<<endl;
+        cout<<"Select: "<<endl;
         cin>>selection;
         if (selection==2)//if user decides to quit game, store user's progress in .txt file
         {
