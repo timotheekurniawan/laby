@@ -32,7 +32,7 @@ string maps[10] = {
 int limits[10] = {500, 500, 500, 500, 500, 500, 500, 500, 500, 500};
 
 // Spaces to be traveled by laby of each level
-int spaces[10] = {55,57, 61, 48, 81, 68, 73, 66, 64, 58};
+int spaces[10] = {55,57, 61, 48, 81, 68, 73, 66, 64, 48};
 
 // Function to get the initial limit of the level
 // Input    : - level
