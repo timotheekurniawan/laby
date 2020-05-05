@@ -4,11 +4,10 @@
 #define LABY_H
 #include "userStruct.h"
 #include "levels.h"
-void moveLeft(int labyPos,User &userSelected);
-void moveRight(int labyPos,User &userSelected);
-void moveUp(int labyPos,User &userSelected);
-void moveDown(int labyPos,User &userSelected);
-void getMove(User &userSelected,bool &stillPlaying);
+void moveLeft(int labyPos, User &userSelected);
+void moveRight(int labyPos, User &userSelected);
+void moveUp(int labyPos, User &userSelected);
+void moveDown(int labyPos, User &userSelected);
+void getMove(User &userSelected, bool &stillPlaying);
 
 #endif
-

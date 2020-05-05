@@ -16,30 +16,31 @@ using namespace std;
 //   playGame(username) to play the game again.
 // - If the user quits game, the user's game progress(currentLevel,currentMap,etc.) is stored in username.txt.
 //input: struct of userSelected (pass by referenced)
-void completedGame(User &userSelected){
-    string filename=userSelected.username+".txt";
+void completedGame(User &userSelected)
+{
+    string filename = userSelected.username + ".txt";
     ofstream fout;
     fout.open(filename);
     int selection;
-    cout<<"Congratulations. You have completed all the levels!"<<endl;
-    cout<<"Would you like to restart?"<<endl;
-    cout<<"1. Restart Game"<<endl;
-    cout<<"2. Quit Game"<<endl;
-    cout<<"Choose (1) or (2)"<<endl;
-    cout<<"Selection: "<<endl;
-    cin>>selection;
-    if (selection==1)
+    cout << "Congratulations. You have completed all the levels!" << endl;
+    cout << "Would you like to restart?" << endl;
+    cout << "1. Restart Game" << endl;
+    cout << "2. Quit Game" << endl;
+    cout << "Choose (1) or (2)" << endl;
+    cout << "Selection: " << endl;
+    cin >> selection;
+    if (selection == 1)
     {
         userSelected.currentLevel = 1;
         userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
-        userSelected.currentTravel=1;
+        userSelected.currentTravel = 1;
         userSelected.firstHeart = true;
         fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << " " << userSelected.firstHeart;
         fout.close();
         playGame(userSelected);
     }
-    else if (selection==2)
+    else if (selection == 2)
     {
         userSelected.currentLevel = 11;
         fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << " " << userSelected.firstHeart;

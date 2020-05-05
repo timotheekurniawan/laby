@@ -52,7 +52,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
             cout << "1. Continue" << endl;
             cout << "2. Quit" << endl;
             // cout<<"Choose (1) or (2)"<<endl;
-            cout << "Select: " << endl;
+            cout << "Select: ";
             cin >> selection;
             if (selection == 'q') //if user decides to quit game, save user's progress to .txt file
             {
@@ -103,7 +103,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
         cout << "1. Retry" << endl;
         cout << "2. Quit" << endl;
         // cout<<"Choose (1) or (2)"<<endl;
-        cout << "Select: " << endl;
+        cout << "Select: ";
         cin >> selection;
         if (selection == 'q') //if user decides to quit game, store user's progress in .txt file
         {

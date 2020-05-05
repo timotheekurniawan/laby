@@ -9,24 +9,22 @@ using namespace std;
 
 //DEFINE HEARTS
 #define HEART "\xE2\x99\xA5"
-#define UNAVAILABLE "\xe2\x96\x88"	
+#define UNAVAILABLE "\xe2\x96\x88"
 #define LABY "\xe2\x98\x85"
 #define VISITED "\xe2\x97\xa6"
 
-
 // Map of each level in form of string
 string maps[10] = {
-"--XXXXXXXX----XXXXXX------XXXX--------XX-------------------X-------XXX-----XXXXX---XXXXXXX-XXXXXXXXX",
-"XXXXXXXXXX---------X-X-XX-X----X---------X-XX-X-X-----X-X-X-------X-X--X---XX-X--XX-----X-XXXXXXXXXX",
-"---XXXX----X-XXXX-X---------X-XX-XX---X----XX-XXX--X-XX------X-XXXXX---X-----X---XXXXX-X---------X--",
-"XX----XXXXXX-X----XXXX------XXXXXX--XXXXXXXX--XXXX--XX--XX-----X--X---X--------XXX---X--XXXXXX--XXXX",
-"X---X----X--------------X-X-X-----------------X----X-------X------------X-------X-------XXXXX----XXX",
-"XXXX--XXXXXXXX--XXXXXX------XXX--------XX---X-----X---X-X---------X-----X-----------------XX-----X--",
-"X---X-------X---XX-----------X--X----X--X-X--X---------XXX-X-XXX-X------------X---XX-XX-----XX-----X",
-"X--------X----XX------XXXXXX---XX----XX---X-XX-X--X--------XX---XX---XXX------XX---XXXX-------XX----",
-"-----XXXXX-XX---XX---X----X-------------XX------X-XXXXX-X---------XXX--XXXX-XXX--XXXX-X---------X---",
-"XXX------X----XXXX-X--X----X-X--X-XX---XX-X--XXXXX--XX-------X--X-XX---X--X-XX------X-----XXX------X"
-};
+    "--XXXXXXXX----XXXXXX------XXXX--------XX-------------------X-------XXX-----XXXXX---XXXXXXX-XXXXXXXXX",
+    "XXXXXXXXXX---------X-X-XX-X----X---------X-XX-X-X-----X-X-X-------X-X--X---XX-X--XX-----X-XXXXXXXXXX",
+    "---XXXX----X-XXXX-X---------X-XX-XX---X----XX-XXX--X-XX------X-XXXXX---X-----X---XXXXX-X---------X--",
+    "XX----XXXXXX-X----XXXX------XXXXXX--XXXXXXXX--XXXX--XX--XX-----X--X---X--------XXX---X--XXXXXX--XXXX",
+    "X---X----X--------------X-X-X-----------------X----X-------X------------X-------X-------XXXXX----XXX",
+    "XXXX--XXXXXXXX--XXXXXX------XXX--------XX---X-----X---X-X---------X-----X-----------------XX-----X--",
+    "X---X-------X---XX-----------X--X----X--X-X--X---------XXX-X-XXX-X------------X---XX-XX-----XX-----X",
+    "X--------X----XX------XXXXXX---XX----XX---X-XX-X--X--------XX---XX---XXX------XX---XXXX-------XX----",
+    "-----XXXXX-XX---XX---X----X-------------XX------X-XXXXX-X---------XXX--XXXX-XXX--XXXX-X---------X---",
+    "XXX------X----XXXX-X--X----X-X--X-XX---XX-X--XXXXX--XX-------X--X-XX---X--X-XX------X-----XXX------X"};
 
 // Move limit of each level
 int limits[10] = {65, 115, 75, 75, 145, 100, 125, 105, 120, 85};
@@ -37,22 +35,25 @@ int spaces[10] = {55, 57, 61, 48, 81, 68, 73, 66, 64, 62};
 // Function to get the initial limit of the level
 // Input    : - level
 // Return   : - the initial limit
-int getInitialLimit(int level){
-    return limits[level-1];
+int getInitialLimit(int level)
+{
+    return limits[level - 1];
 }
 
 // Function to get the initial available spaces of the level
 // Input    : - level
 // Return   : - the initial available spaces
-int getInitialSpace(int level){
-    return spaces[level-1];
+int getInitialSpace(int level)
+{
+    return spaces[level - 1];
 }
 
 // Function to randomize the starting position of Laby
 // in the map then update it to the map. This function
 // is used when starting or restarting level
 // Input    : - map (pass by referenced)
-void randomizeStartPos(string &map){
+void randomizeStartPos(string &map)
+{
     srand(time(NULL));
     int startPos;
     while (true)
@@ -71,7 +72,8 @@ void randomizeStartPos(string &map){
 // in the map then update it to the map. This function
 // is used when starting or restarting level
 // Input    : - map (pass by referenced)
-void randomizeHeartPos(string &map){
+void randomizeHeartPos(string &map)
+{
     srand(time(NULL));
     int heartPos;
     while (true)
@@ -89,8 +91,9 @@ void randomizeHeartPos(string &map){
 // Function to get the empty map of the level
 // Input    : - level
 // Return   : - the empty map
-string getEmptyMap(int level){
-    string map = maps[level-1];
+string getEmptyMap(int level)
+{
+    string map = maps[level - 1];
     randomizeStartPos(map);
     randomizeHeartPos(map);
     return map;
@@ -98,7 +101,8 @@ string getEmptyMap(int level){
 
 // Function to output the map in grids
 // Input    : - map
-void buildMap(string map){
+void buildMap(string map)
+{
     string line;
     for (int i = 0; i < 10; ++i)
     {
@@ -107,31 +111,36 @@ void buildMap(string map){
             cout << " -";
         }
         cout << endl;
-        line = map.substr(i * 10, 10);                      // Get each line. i * 10 to get index 0, 10, and so on.
+        line = map.substr(i * 10, 10); // Get each line. i * 10 to get index 0, 10, and so on.
         for (int b = 0; b < 10; ++b)
         {
             cout << "|";
-            if (line.substr(b, 1) == "-"){
+            if (line.substr(b, 1) == "-")
+            {
                 cout << " ";
             }
-            else if (line.substr(b, 1) == "X"){
+            else if (line.substr(b, 1) == "X")
+            {
                 cout << UNAVAILABLE;
             }
-            else if (line.substr(b, 1) == "L"){
+            else if (line.substr(b, 1) == "L")
+            {
                 cout << LABY;
             }
-            else if (line.substr(b, 1) == "V"){
+            else if (line.substr(b, 1) == "V")
+            {
                 cout << VISITED;
             }
-            else if (line.substr(b, 1) == "H"){
+            else if (line.substr(b, 1) == "H")
+            {
                 cout << HEART;
             }
         }
         cout << "|" << endl;
     }
     for (int a = 0; a < 10; ++a)
-    {                                                     // Print last line
+    { // Print last line
         cout << " -";
-    }    
-    cout << endl;                     
+    }
+    cout << endl;
 }
