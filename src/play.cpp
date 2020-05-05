@@ -7,7 +7,7 @@
 #include "laby.h"
 #include "levels.h"
 #include "congrats.h"
-
+#include "invalidSelection.h"
 using namespace std;
 
 //function to play a certain level
@@ -24,8 +24,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
 
     while (userSelected.currentLimit > 0 && userSelected.currentTravel < spaces[userSelected.currentLevel - 1] && stillPlaying)
     {
-        cout << "---------- Level " << userSelected.currentLevel << " -----------" << endl
-             << endl;
+        cout << "                      " << "Level " << userSelected.currentLevel << "                      " << endl << endl;
         buildMap(userSelected.currentMap);
         cout << endl;
         cout << "Moves Remaining: " << userSelected.currentLimit << endl;
@@ -38,6 +37,8 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
     {
         if (userSelected.currentLevel + 1 < 11)
         {
+            char selectionList[2] = {'e', 'q'};
+            int sizeSelectionList = 2;
             cout << "Level " << userSelected.currentLevel << " Completed!" << endl
                  << endl;
             userSelected.currentLevel += 1;
@@ -47,30 +48,38 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
             // cout<<"Level Up!"<<endl;
             // cout<<"Now you are at level "<<userSelected.currentLevel<<"."<<endl;
             // cout<<"Continue Playing?"<<endl;
-            cout << "(e) Continue" << endl;
-            cout << "(q) Quit" << endl;
-            // cout<<"Choose (1) or (2)"<<endl;
-            cout << "Select: ";
-            cin >> selection;
-            cout << endl;
-            if (selection == 'q') //if user decides to quit game, save user's progress to .txt file
+            while (invalidSelection(selectionList, selection, sizeSelectionList))
             {
-                string filename = userSelected.username + ".txt";
-                ofstream fout;
-                fout.open(filename);
-                if (fout.fail())
+                cout << "(e) Continue" << endl;
+                cout << "(q) Quit" << endl;
+                cout << "Select: ";
+                cin >> selection;
+                cout << endl;
+                if (selection == 'q') //if user decides to quit game, save user's progress to .txt file
                 {
-                    cout << "Error in file opening!" << endl;
-                    exit(1);
+                    string filename = userSelected.username + ".txt";
+                    ofstream fout;
+                    fout.open(filename);
+                    if (fout.fail())
+                    {
+                        cout << "Error in file opening!" << endl;
+                        exit(1);
+                    }
+                    fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
+                    stillPlaying = false;
+                    break;
                 }
-                fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
-                stillPlaying = false;
-                return;
+                else if (selection == 'e')
+                {
+                    playCurrentLevel(userSelected, stillPlaying);
+                    break;
+                }
+                else 
+                {
+                    cout << "---------------- Invalid Selection ----------------" << endl << endl;
+                }
             }
-            else if (selection == 'e')
-            {
-                playCurrentLevel(userSelected, stillPlaying);
-            }
+ 
         }
         else //finished 10 levels
         {
@@ -91,38 +100,48 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
     //if user fails to complete the level, indicated by not being able to fill out all the empty spaces in the map with 'O' when user's currentLimit has reached 0
     else if ((userSelected.currentTravel < spaces[userSelected.currentLevel - 1] && userSelected.currentLimit == 0) || userSelected.currentLimit < 0)
     {
+        char selectionList[2] = {'e', 'q'};
+        int sizeSelectionList = 2;
         userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
         userSelected.currentTravel = 1;
         // cout<<"No moves left!"<<endl;
         cout << "Level " << userSelected.currentLevel << " failed!" << endl
              << endl;
-        // cout<<"Retry Level?"<<endl;
-        cout << "(e) Retry" << endl;
-        cout << "(q) Quit" << endl;
-        // cout<<"Choose (1) or (2)"<<endl;
-        cout << "Select: ";
-        cin >> selection;
-        cout << endl;
-        if (selection == 'q') //if user decides to quit game, store user's progress in .txt file
+             
+        while (invalidSelection(selectionList, selection, sizeSelectionList))
         {
-            string filename = userSelected.username + ".txt";
-            ofstream fout;
-            fout.open(filename);
-            if (fout.fail())
+            cout << "(e) Retry" << endl;
+            cout << "(q) Quit" << endl;
+            cout << "Select: ";
+            cin >> selection;
+            cout << endl;
+            if (selection == 'q') //if user decides to quit game, store user's progress in .txt file
             {
-                cout << "Error in file opening!" << endl;
-                exit(1);
+                string filename = userSelected.username + ".txt";
+                ofstream fout;
+                fout.open(filename);
+                if (fout.fail())
+                {
+                    cout << "Error in file opening!" << endl;
+                    exit(1);
+                }
+                fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
+                fout.close();
+                stillPlaying = false;
+                break;
             }
-            fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
-            fout.close();
-            stillPlaying = false;
-            return;
+            else if (selection == 'e') // if user decides to retry level
+            {
+                playCurrentLevel(userSelected, stillPlaying);
+                break;
+            }
+            else 
+            {
+                cout << "---------------- Invalid Selection ----------------" << endl << endl;
+            }
         }
-        else if (selection == 'e') // if user decides to retry level
-        {
-            playCurrentLevel(userSelected, stillPlaying);
-        }
+        
     }
 }
 

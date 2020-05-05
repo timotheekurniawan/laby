@@ -5,6 +5,7 @@
 #include "laby.h"
 #include "userStruct.h"
 #include "levels.h"
+#include "invalidSelection.h"
 
 using namespace std;
 
@@ -224,53 +225,61 @@ void moveDown(int labyPos, User &userSelected)
 //moveLeft(),moveRight(),moveUp(), and moveDown() to move to respective directions
 void getMove(User &userSelected, bool &stillPlaying)
 {
-    char move;
+    char selectionList[5] = {'w', 'a', 's', 'd', 'q'};
+    int sizeSelectionList = 5;
+    char move = '0';
     int labyPos = (userSelected.currentMap).find('L'); //to find postion(index) of laby in map represented by a string
 
-    cout << "(w) Up" << endl;
-    cout << "(a) Left" << endl;
-    cout << "(s) Down" << endl;
-    cout << "(d) Right" << endl;
-    cout << "(q) Quit and Save Game" << endl;
-    cout << "Select: ";
-    cin >> move;
-    if (move == 'a')
+    while (invalidSelection(selectionList, move, sizeSelectionList))
     {
-        moveLeft(labyPos, userSelected);
-    }
-    else if (move == 'd')
-    {
-        moveRight(labyPos, userSelected);
-    }
-    else if (move == 'w')
-    {
-        moveUp(labyPos, userSelected);
-    }
-    else if (move == 's')
-    {
-        moveDown(labyPos, userSelected);
-    }
-    else if (move == 'q') //if the user decides to quit in the middle of the game, progess will still be saved
-    {
-        string filename = userSelected.username + ".txt";
-        ofstream fout;
-        fout.open(filename);
-        if (fout.fail())
-        {
-            cout << "Error in file opening!" << endl;
-            exit(1);
-        }
-        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
-        fout.close();
-        stillPlaying = false;
-    }
-    else
-    {
-        cout << endl << "Invalid selection" << endl << endl;
+        cout << "(w) Up" << endl;
+        cout << "(a) Left" << endl;
+        cout << "(s) Down" << endl;
+        cout << "(d) Right" << endl;
+        cout << "(q) Quit and Save Game" << endl;
         cout << "Select: ";
         cin >> move;
+        if (move == 'a')
+        {
+            moveLeft(labyPos, userSelected);
+            break;
+        }
+        else if (move == 'd')
+        {
+            moveRight(labyPos, userSelected);
+            break;
+        }
+        else if (move == 'w')
+        {
+            moveUp(labyPos, userSelected);
+            break;
+        }
+        else if (move == 's')
+        {
+            moveDown(labyPos, userSelected);
+            break;
+        }
+        else if (move == 'q') //if the user decides to quit in the middle of the game, progess will still be saved
+        {
+            string filename = userSelected.username + ".txt";
+            ofstream fout;
+            fout.open(filename);
+            if (fout.fail())
+            {
+                cout << "Error in file opening!" << endl;
+                exit(1);
+            }
+            fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
+            fout.close();
+            stillPlaying = false;
+            break;
+        }
+        else
+        {
+            cout << endl << "---------------- Invalid Selection ----------------" << endl << endl;
+        }
     }
     cout << endl
-         << "---------------------" << endl
+         << "---------------------------------------------------" << endl
          << endl;
 }

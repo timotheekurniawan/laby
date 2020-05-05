@@ -7,6 +7,7 @@
 #include "welcome.h"
 #include "userStruct.h"
 #include "levels.h"
+#include "invalidSelection.h"
 using namespace std;
 
 // Function to add new username to usernameList.txt
@@ -39,6 +40,21 @@ void displayExistingUsers()
         ++count;
     }
     return;
+}
+
+// Function that counts the number of existing user 
+// in usernameList.txt
+int countExistingUsers()
+{
+    int count = 0;
+    string username;
+    ifstream fin;
+    fin.open("usernameList.txt");
+    while (fin >> username)
+    {
+        ++count;
+    }
+    return count;
 }
 
 // Function to get the chosen user from users.txt
@@ -129,12 +145,15 @@ User newGame()
             createUser(newUsername, newUser);
             delete (newUser);                  // free the memory
             getUser(newUsername, currentUser); // get the user
+            cout << endl << "---------------------------------------------------" << endl;
             return currentUser;
         }
-        cout << endl << "Username already exist." << endl << endl;
+        cout << endl << "Username already exist." << endl;
         cout << "Enter a new username: ";
     }
+
 }
+
 
 // Function used if the player choose Continue Game.
 // The player chooses the user.
@@ -148,13 +167,25 @@ User continueGame()
         cout << "Error in opening usernameList" << endl;
         exit(1);
     }
-    int chosenUsernameNumber;
+    int chosenUsernameNumber = 0;
     string chosenUsername;
     User chosenUser;
-    cout << "Choose an existing user:" << endl;
-    displayExistingUsers();
-    cout << "Selection: ";
-    cin >> chosenUsernameNumber;
+    int numberOfExistingUsers = countExistingUsers();
+    bool firstLoop = true;
+    // Loop if chosenUsernameNumber is invalid
+    while (chosenUsernameNumber <= 0 || chosenUsernameNumber > numberOfExistingUsers)
+    {
+        if (firstLoop == false){
+            cout << endl << "---------------- Invalid Selection ----------------" << endl;
+        }
+        firstLoop = false;
+        cout << "Choose an existing user:" << endl;
+        displayExistingUsers();
+        cout << "Selection: ";
+        cin >> chosenUsernameNumber;
+        
+    }
+    cout << endl << "---------------------------------------------------" << endl;
     for (int i = 0; i < chosenUsernameNumber; ++i)
     {
         fin >> chosenUsername;
@@ -168,25 +199,37 @@ User continueGame()
 // Return   : the user
 User welcome()
 {
-    string game;
+    char game;
+    char selectionList[2] = {'1', '2'};
+    int sizeSelectionList = 2;
     User userPlaying;
     cout << endl
          << endl
          << "Welcome to Labyrinth!" << endl
          << endl
          << endl;
-    cout << "(1) New Game" << endl;
-    cout << "(2) Continue Game" << endl;
-    cout << "Select: ";
-    cin >> game;
-    cout << endl;
-    if (game == "1")
+    while (invalidSelection(selectionList, game, sizeSelectionList))
     {
-        userPlaying = newGame();
-    }
-    if (game == "2")
-    {
-        userPlaying = continueGame();
+        cout << "(1) New Game" << endl;
+        cout << "(2) Continue Game" << endl;
+        cout << "Select: ";
+        cin >> game;
+        if (game == '1')
+        {
+            cout << endl << "---------------------------------------------------" << endl << endl;
+            userPlaying = newGame();
+            break;
+        }
+        else if (game == '2')
+        {
+            cout << endl << "---------------------------------------------------" << endl << endl;
+            userPlaying = continueGame();
+            break;
+        }
+        else 
+        {
+            cout << endl << "---------------- Invalid Selection ----------------" << endl << endl;
+        }
     }
     cout << endl;
     return userPlaying;

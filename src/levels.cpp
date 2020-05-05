@@ -111,12 +111,14 @@ void buildMap(string map)
     string line;
     for (int i = 0; i < 10; ++i)
     {
+        cout << "               ";
         for (int a = 0; a < 10; ++a)
         {
             cout << " -";
         }
         cout << endl;
         line = map.substr(i * 10, 10); // Get each line. i * 10 to get index 0, 10, and so on.
+        cout << "               ";
         for (int b = 0; b < 10; ++b)
         {
             cout << "|";
@@ -143,6 +145,7 @@ void buildMap(string map)
         }
         cout << "|" << endl;
     }
+    cout << "               ";
     for (int a = 0; a < 10; ++a)
     { // Print last line
         cout << " -";

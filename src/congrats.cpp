@@ -7,7 +7,7 @@
 #include "userStruct.h"
 #include "levels.h"
 #include "play.h"
-
+#include "invalidSelection.h"
 using namespace std;
 
 // Function used when a user has finished all 10 levels.
@@ -18,31 +18,41 @@ using namespace std;
 //input: struct of userSelected (pass by referenced)
 void completedGame(User &userSelected)
 {
+    char selectionList[2] = {'1', '2'};
+    char selection = '0';
+    int sizeSelectionList = 2;
     string filename = userSelected.username + ".txt";
     ofstream fout;
     fout.open(filename);
-    int selection;
     cout << "Congratulations. You have completed all the levels!" << endl;
-    cout << "Would you like to restart?" << endl;
-    cout << "1. Restart Game" << endl;
-    cout << "2. Quit Game" << endl;
-    cout << "Choose (1) or (2)" << endl;
-    cout << "Selection: " << endl;
-    cin >> selection;
-    if (selection == 1)
+
+    while (invalidSelection(selectionList, selection, sizeSelectionList))
     {
-        userSelected.currentLevel = 1;
-        userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
-        userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
-        userSelected.currentTravel = 1;
-        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
-        fout.close();
-        playGame(userSelected);
-    }
-    else if (selection == 2)
-    {
-        userSelected.currentLevel = 11;
-        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
-        fout.close();
+        cout << "(1) Restart Game" << endl;
+        cout << "(2) Quit Game" << endl;
+        cout << "Selection: " << endl;
+        cin >> selection;
+        if (selection == '1')
+        {
+            userSelected.currentLevel = 1;
+            userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
+            userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
+            userSelected.currentTravel = 1;
+            fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
+            fout.close();
+            playGame(userSelected);
+            break;
+        }
+        else if (selection == '2')
+        {
+            userSelected.currentLevel = 11;
+            fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
+            fout.close();
+            break;
+        }
+        else
+        {
+            cout << endl << "---------------- Invalid Selection ----------------" << endl << endl;
+        }
     }
 }

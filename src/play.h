@@ -6,6 +6,7 @@
 #include "laby.h"
 #include "levels.h"
 #include "congrats.h"
+#include "invalidSelection.h"
 void playCurrentLevel(User &userSelected, bool &stillPlaying);
 void playGame(User &userSelected);
 
