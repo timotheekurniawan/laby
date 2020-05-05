@@ -261,8 +261,9 @@ User welcome()
             }
             else
             {
-                cout << "----------- No existing save file found -----------" << endl;
-                cout << "---------- Creating a new user save file ----------" << endl;
+                cout << "No existing user yet!" << endl << endl;
+                cout << "---------------------------------------------------" << endl << endl;
+                cout << "Creating a new user.." << endl << endl;
                 userPlaying = newGame();
             }
             break;
