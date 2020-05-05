@@ -7,7 +7,7 @@
 
 ### Game Description
 
-“Labyrinth” is a game of pathfinding inspired by the mobile game [Amaze](https://play.google.com/store/apps/details?id=com.crazylabs.amaze.game&hl=en). The game’s objective is to cover all the available spaces by moving the character “Laby” within a certain move limit. There will be 10 total levels to beat, each with different maps and move limits. On every level, a heart will pop up in a random position on the map, when the character "Laby" passes by this heart, it will add the move limit, which can help to complete each level. If "Laby passed by a heart, another heart will pop up immediately in a random position of the map. If users fail to cover all available spaces in the certain move limit, they lose the level and have the option of retrying it.
+“Labyrinth” is a game of pathfinding inspired by the mobile game [Amaze](https://play.google.com/store/apps/details?id=com.crazylabs.amaze.game&hl=en). The game’s objective is to cover all the available spaces by moving the character “Laby” within a certain move limit. There will be 10 total levels to beat, each with different maps and move limits. On every level, a heart will pop up in a random position on the map, when the character "Laby" passes by this heart, it will add the move limit, which can help to complete each level. If "Laby" passes by a heart, another heart will pop up immediately in a random position of the map. If users fail to cover all available spaces in the certain move limit, they lose the level and have the option of retrying it.
 
 ### Game Rules
 
