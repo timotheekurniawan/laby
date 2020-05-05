@@ -6,6 +6,7 @@
 #include "levels.h"
 #include "invalidSelection.h"
 
+bool ExistingSaveFiles();
 void addToUsernameList(std::string username);
 void displayExistingUsers();
 int countExistingUsers();

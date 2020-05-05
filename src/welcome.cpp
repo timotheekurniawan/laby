@@ -10,6 +10,21 @@
 #include "invalidSelection.h"
 using namespace std;
 
+bool ExistingSaveFiles()
+{
+    ifstream fin;
+    fin.open("usernameList.txt");
+    if (fin.fail())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    
+}
+
 // Function to add new username to usernameList.txt
 // that holds all the username registered in the game
 // Input    : - new username
@@ -240,7 +255,16 @@ User welcome()
         else if (game == '2')
         {
             cout << endl << "---------------------------------------------------" << endl << endl;
-            userPlaying = continueGame();
+            if (ExistingSaveFiles())
+            {
+                userPlaying = continueGame();
+            }
+            else
+            {
+                cout << "----------- No existing save file found -----------" << endl;
+                cout << "---------- Creating a new user save file ----------" << endl;
+                userPlaying = newGame();
+            }
             break;
         }
         else 
