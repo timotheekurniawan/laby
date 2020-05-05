@@ -11,6 +11,8 @@ void displayExistingUsers();
 int countExistingUsers();
 void getUser(std::string chosenUsername, User &chosenUser);
 void createUser(std::string newUsername, User &newUser);
+void printStar();
+void printLabyrinth();
 User newGame();
 User continueGame();
 User welcome();

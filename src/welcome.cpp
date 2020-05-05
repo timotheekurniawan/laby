@@ -194,6 +194,24 @@ User continueGame()
     return chosenUser;
 }
 
+void printStar(){
+    string indent = "                     ";
+    cout << indent << "    ." << endl;
+    cout << indent << "___/ \\___" << endl;
+    cout << indent << " ',   .'" << endl;
+    cout << indent << " /.' '.\\" << endl;
+}
+
+void printLabyrinth(){
+    string indent = "  ";
+    cout << indent << "   __       _                _       _   _     " << endl;
+    cout << indent << "  / /  __ _| |__  _   _ _ __(_)_ __ | |_| |__  " << endl;
+    cout << indent << " / /  / _` | '_ \\| | | | '__| | '_ \\| __| '_ \\ " << endl;
+    cout << indent << "/ /__| (_| | |_) | |_| | |  | | | | | |_| | | |" << endl;
+    cout << indent << "\\____/\\__,_|_.__/ \\__, |_|  |_|_| |_|\\__|_| |_|" << endl;
+    cout << indent << "                  |___/                        " << endl;
+}
+
 // Function to display welcome message and let the player choose
 // to new game or continue game.
 // Return   : the user
@@ -203,11 +221,11 @@ User welcome()
     char selectionList[2] = {'1', '2'};
     int sizeSelectionList = 2;
     User userPlaying;
-    cout << endl
-         << endl
-         << "Welcome to Labyrinth!" << endl
-         << endl
-         << endl;
+    cout << "---------------------------------------------------" << endl << endl;
+    printStar();
+    cout << endl;
+    printLabyrinth();
+    cout << endl << endl;
     while (invalidSelection(selectionList, game, sizeSelectionList))
     {
         cout << "(1) New Game" << endl;
