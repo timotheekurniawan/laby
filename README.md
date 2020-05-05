@@ -15,7 +15,7 @@
 - Each space travelled by Laby decreases the move limit of the current level.
 - Spaces travelled by Laby will be counted towards the travel count regardless if Laby has already covered the place before or not.
 - If “Laby” exceeds the travel limit, the player loses.
-- A heart will be placed randomly on the map to increase Laby’s moves remaining/ move limit by 5. The number of moves remaining / move limit varies among levels.
+- A heart will be placed randomly on the map to increase Laby’s moves remaining / move limit by 5. The number of moves remaining / move limit varies among levels.
 
 ### Features
 
