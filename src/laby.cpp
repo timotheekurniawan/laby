@@ -19,7 +19,11 @@ void moveLeft(int labyPos, User &userSelected)
     //e.g if laby is at index 19, it will check index 18,17,16,.. until index 10
     for (int i = labyPos - 1; i >= labyPos - a; --i)
     {
-        if (userSelected.currentMap[i] == '-')
+        if (userSelected.currentTravel == spaces[userSelected.currentLevel - 1])
+        {
+            break;
+        }
+        else if (userSelected.currentMap[i] == '-')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 1] = 'V';
@@ -32,17 +36,23 @@ void moveLeft(int labyPos, User &userSelected)
             userSelected.currentMap[i + 1] = 'V';
             userSelected.currentLimit -= 1;
         }
+        else if (userSelected.currentMap[i] == 'h')         // the heart is on the block that hasn't been visited
+        {
+            userSelected.currentMap[i] = 'L';
+            userSelected.currentMap[i + 1] = 'V';
+            // userSelected.currentLimit+=1; how many currentLimit should be added if heart is obtained?
+            userSelected.currentLimit += 5;
+            userSelected.currentLimit -= 1;
+            userSelected.currentTravel += 1;
+            randomizeHeartPos(userSelected.currentMap);
+        }
         else if (userSelected.currentMap[i] == 'H')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 1] = 'V';
             // userSelected.currentLimit+=1; how many currentLimit should be added if heart is obtained?
-            userSelected.currentLimit += 10;
+            userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
-            if (userSelected.firstHeart)
-            {
-                userSelected.currentTravel += 1;
-            }
             randomizeHeartPos(userSelected.currentMap);
         }
         else if (userSelected.currentMap[i] == 'X')
@@ -62,7 +72,11 @@ void moveRight(int labyPos, User &userSelected)
     //e.g laby is at index 0, so it will check index 1,2,3, .. until index 9
     for (int i = labyPos + 1; i <= labyPos + a; ++i)
     {
-        if (userSelected.currentMap[i] == '-')
+        if (userSelected.currentTravel == spaces[userSelected.currentLevel - 1])
+        {
+            break;
+        }
+        else if (userSelected.currentMap[i] == '-')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i - 1] = 'V';
@@ -75,19 +89,26 @@ void moveRight(int labyPos, User &userSelected)
             userSelected.currentMap[i - 1] = 'V';
             userSelected.currentLimit -= 1;
         }
+        else if (userSelected.currentMap[i] == 'h')
+        {
+            userSelected.currentMap[i] = 'L';
+            userSelected.currentMap[i - 1] = 'V';
+            // userSelected.currentLimit+=1;
+            userSelected.currentLimit += 5;
+            userSelected.currentLimit -= 1;
+            userSelected.currentTravel += 1;
+            randomizeHeartPos(userSelected.currentMap);
+        }
         else if (userSelected.currentMap[i] == 'H')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i - 1] = 'V';
             // userSelected.currentLimit+=1;
-            userSelected.currentLimit += 10;
+            userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
-            if (userSelected.firstHeart)
-            {
-                userSelected.currentTravel += 1;
-            }
             randomizeHeartPos(userSelected.currentMap);
         }
+
         else if (userSelected.currentMap[i] == 'X')
         {
             break;
@@ -104,7 +125,11 @@ void moveUp(int labyPos, User &userSelected)
     //e.g. laby is at index 45, it will check index 30,25,.. until index 5
     for (int i = labyPos - 10; i >= a; i -= 10)
     {
-        if (userSelected.currentMap[i] == '-')
+        if (userSelected.currentTravel == spaces[userSelected.currentLevel - 1])
+        {
+            break;
+        }
+        else if (userSelected.currentMap[i] == '-')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 10] = 'V';
@@ -117,17 +142,23 @@ void moveUp(int labyPos, User &userSelected)
             userSelected.currentMap[i + 10] = 'V';
             userSelected.currentLimit -= 1;
         }
+        else if (userSelected.currentMap[i] == 'h')
+        {
+            userSelected.currentMap[i] = 'L';
+            userSelected.currentMap[i + 10] = 'V';
+            // userSelected.currentLimit+=1;
+            userSelected.currentLimit += 5;
+            userSelected.currentLimit -= 1;           
+            userSelected.currentTravel += 1;
+            randomizeHeartPos(userSelected.currentMap);
+        }
         else if (userSelected.currentMap[i] == 'H')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 10] = 'V';
             // userSelected.currentLimit+=1;
-            userSelected.currentLimit += 10;
-            userSelected.currentLimit -= 1;
-            if (userSelected.firstHeart)
-            {
-                userSelected.currentTravel += 1;
-            }
+            userSelected.currentLimit += 5;
+            userSelected.currentLimit -= 1;           
             randomizeHeartPos(userSelected.currentMap);
         }
         else if (userSelected.currentMap[i] == 'X')
@@ -146,7 +177,11 @@ void moveDown(int labyPos, User &userSelected)
     //e.g laby is at index 5, it will check index 15,25,35,.. until index 95
     for (int i = labyPos + 10; i <= (90 + a); i += 10)
     {
-        if (userSelected.currentMap[i] == '-')
+        if (userSelected.currentTravel == spaces[userSelected.currentLevel - 1])
+        {
+            break;
+        }
+        else if (userSelected.currentMap[i] == '-')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i - 10] = 'V';
@@ -159,16 +194,22 @@ void moveDown(int labyPos, User &userSelected)
             userSelected.currentMap[i - 10] = 'V';
             userSelected.currentLimit -= 1;
         }
+        else if (userSelected.currentMap[i] == 'h')
+        {
+            userSelected.currentMap[i] = 'L';
+            userSelected.currentMap[i - 10] = 'V';
+            userSelected.currentLimit += 5;
+            userSelected.currentLimit -= 1;
+            userSelected.currentTravel += 1;
+            randomizeHeartPos(userSelected.currentMap);
+        }
+
         else if (userSelected.currentMap[i] == 'H')
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i - 10] = 'V';
-            userSelected.currentLimit += 10;
+            userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
-            if (userSelected.firstHeart)
-            {
-                userSelected.currentTravel += 1;
-            }
             randomizeHeartPos(userSelected.currentMap);
         }
         else if (userSelected.currentMap[i] == 'X')
@@ -185,17 +226,12 @@ void getMove(User &userSelected, bool &stillPlaying)
 {
     char move;
     int labyPos = (userSelected.currentMap).find('L'); //to find postion(index) of laby in map represented by a string
-    // // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
-    // cout << "Covered: " << userSelected.currentTravel << endl;
 
-    cout << "1. Left" << endl;
-    cout << "2. Right" << endl;
-    cout << "3. Up" << endl;
-    cout << "4. Down" << endl;
-    cout << "5. Quit and Save Game" << endl;
-    // cout<<"Choose (1), (2), (3), or (4)"<<endl;
-    // cout<<"If you want to quit and save game, choose (5)"<<endl;
-    // cout<<endl;
+    cout << "(w) Up" << endl;
+    cout << "(a) Left" << endl;
+    cout << "(s) Down" << endl;
+    cout << "(d) Right" << endl;
+    cout << "(q) Quit and Save Game" << endl;
     cout << "Select: ";
     cin >> move;
     if (move == 'a')
@@ -230,7 +266,7 @@ void getMove(User &userSelected, bool &stillPlaying)
     }
     else
     {
-        cout << "Invalid selection" << endl;
+        cout << endl << "Invalid selection" << endl << endl;
         cout << "Select: ";
         cin >> move;
     }

@@ -79,7 +79,12 @@ void randomizeHeartPos(string &map)
     while (true)
     {
         heartPos = rand() % 100;
-        if (map.substr(heartPos, 1) == "-" || map.substr(heartPos, 1) == "V")
+        if (map.substr(heartPos, 1) == "-")                 // The pos to be a heart is originally unvisited
+        {
+            map.replace(heartPos, 1, "h");
+            break;
+        }
+        if (map.substr(heartPos, 1) == "V")                 // The pos to be a heart is originally already visited 
         {
             map.replace(heartPos, 1, "H");
             break;
@@ -131,7 +136,7 @@ void buildMap(string map)
             {
                 cout << VISITED;
             }
-            else if (line.substr(b, 1) == "H")
+            else if (line.substr(b, 1) == "H" || line.substr(b, 1) == "h")
             {
                 cout << HEART;
             }

@@ -10,7 +10,6 @@ struct User
     std::string currentMap; // String which corresponds to the map
     int currentLimit;       // Current move currentLimit
     int currentTravel;      // Current spaces traveled by Laby
-    bool firstHeart;
 };
 
 #endif

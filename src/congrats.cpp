@@ -35,15 +35,14 @@ void completedGame(User &userSelected)
         userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
         userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
         userSelected.currentTravel = 1;
-        userSelected.firstHeart = true;
-        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << " " << userSelected.firstHeart;
+        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
         fout.close();
         playGame(userSelected);
     }
     else if (selection == 2)
     {
         userSelected.currentLevel = 11;
-        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << " " << userSelected.firstHeart;
+        fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel;
         fout.close();
     }
 }

@@ -35,7 +35,7 @@ void displayExistingUsers()
     fin.open("usernameList.txt");
     while (fin >> username)
     {
-        cout << count << ". " << username << endl;
+        cout << "(" << count << ") " << username << endl;
         ++count;
     }
     return;
@@ -55,7 +55,7 @@ void getUser(string chosenUsername, User &chosenUser)
         cout << "Error in file opening!" << endl;
         exit(1);
     }
-    fin >> chosenUser.username >> chosenUser.currentLevel >> chosenUser.currentMap >> chosenUser.currentLimit >> chosenUser.currentTravel >> chosenUser.firstHeart;
+    fin >> chosenUser.username >> chosenUser.currentLevel >> chosenUser.currentMap >> chosenUser.currentLimit >> chosenUser.currentTravel;
     fin.close();
     return;
 }
@@ -82,31 +82,9 @@ void createUser(string newUsername, User *&newUser)
     newUser->currentMap = getEmptyMap(newUser->currentLevel);
     newUser->currentLimit = getInitialLimit(newUser->currentLevel);
     newUser->currentTravel = 1;
-    newUser->firstHeart = true;
-    fout << newUser->username << " " << newUser->currentLevel << " " << newUser->currentMap << " " << newUser->currentLimit << " " << newUser->currentTravel << " " << newUser->firstHeart;
+    fout << newUser->username << " " << newUser->currentLevel << " " << newUser->currentMap << " " << newUser->currentLimit << " " << newUser->currentTravel;
     fout.close();
 }
-
-// void createUser(string newUsername, User &newUser){
-//     string file=newUsername+".txt";
-//     ofstream fout;
-//     fout.open(file);
-//     if (fout.fail())
-//     {
-//         cout<<"Error in file opening!"<<endl;
-//         exit(1);
-//     }
-//     addToUsernameList(newUsername);
-
-//     newUser.username = newUsername;
-//     newUser.currentLevel = 1;
-//     newUser.currentMap = getEmptyMap(newUser.currentLevel);
-//     newUser.currentLimit = getInitialLimit(newUser.currentLevel);
-//     newUser.currentTravel=0;
-
-//     fout<<newUser.username<<" "<<newUser.currentLevel<<" "<<newUser.currentMap<<" "<<newUser.currentLimit<<" "<<newUser.currentTravel<<endl;
-//     fout.close();
-// }
 
 // Function to check if the username is in the usernamelist
 // returns true if exist, returns false if not exist
@@ -151,10 +129,9 @@ User newGame()
             createUser(newUsername, newUser);
             delete (newUser);                  // free the memory
             getUser(newUsername, currentUser); // get the user
-            // return *newUser;
             return currentUser;
         }
-        cout << "Username already exist." << endl;
+        cout << endl << "Username already exist." << endl << endl;
         cout << "Enter a new username: ";
     }
 }
@@ -198,10 +175,11 @@ User welcome()
          << "Welcome to Labyrinth!" << endl
          << endl
          << endl;
-    cout << "1. New Game" << endl;
-    cout << "2. Continue Game" << endl;
+    cout << "(1) New Game" << endl;
+    cout << "(2) Continue Game" << endl;
     cout << "Select: ";
     cin >> game;
+    cout << endl;
     if (game == "1")
     {
         userPlaying = newGame();
@@ -210,7 +188,6 @@ User welcome()
     {
         userPlaying = continueGame();
     }
-    cout << endl
-         << endl;
+    cout << endl;
     return userPlaying;
 }
