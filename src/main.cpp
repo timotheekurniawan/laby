@@ -6,7 +6,8 @@
 #include "userStruct.h"
 using namespace std;
 
-int main(){
+int main()
+{
     User userPlaying = welcome();
     playGame(userPlaying);
 }

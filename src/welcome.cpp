@@ -9,13 +9,15 @@
 #include "levels.h"
 using namespace std;
 
-// Function to add new username to usernameList.txt 
+// Function to add new username to usernameList.txt
 // that holds all the username registered in the game
 // Input    : - new username
-void addToUsernameList(string username){
+void addToUsernameList(string username)
+{
     ofstream fout;
-    fout.open("usernameList.txt",ios::app);
-    if (fout.fail()){
+    fout.open("usernameList.txt", ios::app);
+    if (fout.fail())
+    {
         cout << "Error in file opening!" << endl;
         exit(1);
     }
@@ -23,61 +25,65 @@ void addToUsernameList(string username){
     fout.close();
 }
 
-// Function to display all usernames in usernameList.txt 
+// Function to display all usernames in usernameList.txt
 // that holds all the username registered in the game
-void displayExistingUsers(){
+void displayExistingUsers()
+{
     int count = 1;
     string username;
     ifstream fin;
     fin.open("usernameList.txt");
-    while (fin >> username){
+    while (fin >> username)
+    {
         cout << count << ". " << username << endl;
         ++count;
     }
     return;
 }
 
-// Function to get the chosen user from users.txt 
+// Function to get the chosen user from users.txt
 // based on the chosen username
 // Input    : - chosen username
 //            - chosenUser (pass by referenced)
-void getUser(string chosenUsername, User &chosenUser){
-    string file=chosenUsername+".txt";
+void getUser(string chosenUsername, User &chosenUser)
+{
+    string file = chosenUsername + ".txt";
     ifstream fin;
     fin.open(file);
     if (fin.fail())
     {
-        cout<<"Error in file opening!"<<endl;
+        cout << "Error in file opening!" << endl;
         exit(1);
     }
-    fin>>chosenUser.username>>chosenUser.currentLevel>>chosenUser.currentMap>>chosenUser.currentLimit>>chosenUser.currentTravel>>chosenUser.firstHeart;
+    fin >> chosenUser.username >> chosenUser.currentLevel >> chosenUser.currentMap >> chosenUser.currentLimit >> chosenUser.currentTravel >> chosenUser.firstHeart;
     fin.close();
     return;
 }
 
-// Function to create a new user to users.txt 
+// Function to create a new user to users.txt
 // with username input. It also calls the function
 // addToUsernameList() to add the new username to usersList.txt
 // Input    : - new username
-//            - newUser (pass by referenced) 
-void createUser(string newUsername,User *& newUser){
-    string file=newUsername+".txt";
+//            - newUser (pass by referenced)
+void createUser(string newUsername, User *&newUser)
+{
+    string file = newUsername + ".txt";
     ofstream fout;
     fout.open(file);
     if (fout.fail())
     {
-        cout<<"Error in file opening!"<<endl;
+        cout << "Error in file opening!" << endl;
         exit(1);
     }
     addToUsernameList(newUsername);
 
-    newUser -> username= newUsername;
-    newUser -> currentLevel= 1;
-    newUser -> currentMap = getEmptyMap(newUser->currentLevel);
-    newUser -> currentLimit= getInitialLimit(newUser->currentLevel);
-    newUser -> currentTravel= 1;
-    newUser -> firstHeart = true;
-    fout<<newUser->username<<" "<<newUser->currentLevel<<" "<<newUser->currentMap<<" "<<newUser->currentLimit<<" "<<newUser->currentTravel<<" "<<newUser->firstHeart;
+    newUser->username = newUsername;
+    newUser->currentLevel = 1;
+    newUser->currentMap = getEmptyMap(newUser->currentLevel);
+    newUser->currentLimit = getInitialLimit(newUser->currentLevel);
+    newUser->currentTravel = 1;
+    newUser->firstHeart = true;
+    fout << newUser->username << " " << newUser->currentLevel << " " << newUser->currentMap << " " << newUser->currentLimit << " " << newUser->currentTravel << " " << newUser->firstHeart;
     fout.close();
 }
 
@@ -104,59 +110,64 @@ void createUser(string newUsername,User *& newUser){
 
 // Function to check if the username is in the usernamelist
 // returns true if exist, returns false if not exist
-bool usernameExist(string newUsername){
+bool usernameExist(string newUsername)
+{
     ifstream fin;
     string existingUsername;
     fin.open("usernameList.txt");
-    
-    // If usernameList.txt does not exist, returns dne; 
-    if (fin.fail()){
+
+    // If usernameList.txt does not exist, returns dne;
+    if (fin.fail())
+    {
         return false;
     }
 
-    while (fin >> existingUsername){
-        if (existingUsername == newUsername){
+    while (fin >> existingUsername)
+    {
+        if (existingUsername == newUsername)
+        {
             return true;
         }
     }
     return false;
 }
 
-
 // Function used if the player choose New Game.
 // It asks for a new username and create the user
 // then store the user locally.
 // Return   : the newly created User
-User newGame(){
+User newGame()
+{
     string newUsername;
     User *newUser = new User;
     User currentUser;
     cout << "Enter a new username: ";
-    
-    while (true){
+
+    while (true)
+    {
         cin >> newUsername;
-        if (usernameExist(newUsername) == false){
+        if (usernameExist(newUsername) == false)
+        {
             createUser(newUsername, newUser);
-            delete(newUser);                                    // free the memory
-            getUser(newUsername, currentUser);                  // get the user
+            delete (newUser);                  // free the memory
+            getUser(newUsername, currentUser); // get the user
             // return *newUser;
             return currentUser;
         }
         cout << "Username already exist." << endl;
         cout << "Enter a new username: ";
     }
-    
 }
 
-
-
 // Function used if the player choose Continue Game.
-// The player chooses the user. 
+// The player chooses the user.
 // Return   : the chosen existing User
-User continueGame(){
+User continueGame()
+{
     ifstream fin;
     fin.open("usernameList.txt");
-    if (fin.fail()){
+    if (fin.fail())
+    {
         cout << "Error in opening usernameList" << endl;
         exit(1);
     }
@@ -167,20 +178,26 @@ User continueGame(){
     displayExistingUsers();
     cout << "Selection: ";
     cin >> chosenUsernameNumber;
-    for (int i = 0; i < chosenUsernameNumber; ++i){
+    for (int i = 0; i < chosenUsernameNumber; ++i)
+    {
         fin >> chosenUsername;
     }
-    getUser(chosenUsername,chosenUser);
+    getUser(chosenUsername, chosenUser);
     return chosenUser;
 }
 
 // Function to display welcome message and let the player choose
-// to new game or continue game. 
+// to new game or continue game.
 // Return   : the user
-User welcome(){
+User welcome()
+{
     string game;
     User userPlaying;
-    cout << endl << endl << "Welcome to Labyrinth!" << endl << endl << endl;
+    cout << endl
+         << endl
+         << "Welcome to Labyrinth!" << endl
+         << endl
+         << endl;
     cout << "1. New Game" << endl;
     cout << "2. Continue Game" << endl;
     cout << "Select: ";
@@ -193,6 +210,7 @@ User welcome(){
     {
         userPlaying = continueGame();
     }
-    cout << endl << endl;
+    cout << endl
+         << endl;
     return userPlaying;
 }
