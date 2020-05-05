@@ -45,7 +45,7 @@
    - play.cpp → functions to play the game
    - laby.cpp → functions to move laby
    - levels.cpp → functions to store and create maps of all 10 levels of the game
-   - invalidSelection.cpp -> function to detect if user's input is invalid
+   - invalidSelection.cpp → function to detect if user's input is invalid
    - userStruct.cpp → declaration of User Struct
    - welcome.cpp → starting the game
    - congrats.cpp → finishing the game
