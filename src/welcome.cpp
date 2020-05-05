@@ -223,7 +223,6 @@ User welcome()
     User userPlaying;
     cout << "---------------------------------------------------" << endl << endl;
     printStar();
-    cout << endl;
     printLabyrinth();
     cout << endl << endl;
     while (invalidSelection(selectionList, game, sizeSelectionList))
