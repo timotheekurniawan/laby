@@ -1,21 +1,22 @@
 // userStruct.h
-// Struct to hold 
+// Struct to hold
 #ifndef USER_STRUCT
 #define USER_STRUCT
 #include <string>
-struct User {
-    std::string username;              
-    int currentLevel;             // Current currentLevel of user 
-    std::string currentMap;       // String which corresponds to the map
-    int currentLimit;             // Current move currentLimit
-    int currentTravel;            // Current spaces traveled by Laby
+struct User
+{
+    std::string username;
+    int currentLevel;       // Current currentLevel of user
+    std::string currentMap; // String which corresponds to the map
+    int currentLimit;       // Current move currentLimit
+    int currentTravel;      // Current spaces traveled by Laby
     bool firstHeart;
 };
 
 #endif
 
 // Example of use:
-// 
+//
 // (1)
 // User user1;
 // user1.currentLevel = 1;
@@ -24,9 +25,9 @@ struct User {
 // user1.applePos[1] = 4;
 // user1.appleExist = true;
 //
-// 
+//
 // DYNAMIC MEMORY MANAGEMENT
-// 
+//
 // (2)
 // User * user1 = new User;
 // (*user1).currentLevel = 4;
@@ -36,4 +37,4 @@ struct User {
 // User * user1 = new User;
 // user1->currentLevel = 4;
 // cout << user1->currentLevel << endl;
-// 
+//
