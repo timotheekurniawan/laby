@@ -20,7 +20,7 @@ using namespace std;
 //        -boolean stillPlaying which indicates if a user still wants to play or not, if a user quits, stillPlaying becomes false
 void playCurrentLevel(User &userSelected, bool &stillPlaying)
 {
-    int selection;
+    char selection;
     // randomizeStartPos(userSelected.currentMap);
     // randomizeHeartPos(userSelected.currentMap);
     while (userSelected.currentLimit > 0 && userSelected.currentTravel < spaces[userSelected.currentLevel - 1] && stillPlaying)
@@ -54,7 +54,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
             // cout<<"Choose (1) or (2)"<<endl;
             cout << "Select: " << endl;
             cin >> selection;
-            if (selection == 2) //if user decides to quit game, save user's progress to .txt file
+            if (selection == 'q') //if user decides to quit game, save user's progress to .txt file
             {
                 string filename = userSelected.username + ".txt";
                 ofstream fout;
@@ -68,7 +68,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 stillPlaying = false;
                 return;
             }
-            else if (selection == 1)
+            else if (selection == 'e')
             {
                 playCurrentLevel(userSelected, stillPlaying);
             }
@@ -85,6 +85,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 exit(1);
             }
             fout << userSelected.username << " " << userSelected.currentLevel << endl;
+            fout.close();
             stillPlaying = false;
         }
     }
@@ -104,7 +105,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
         // cout<<"Choose (1) or (2)"<<endl;
         cout << "Select: " << endl;
         cin >> selection;
-        if (selection == 2) //if user decides to quit game, store user's progress in .txt file
+        if (selection == 'q') //if user decides to quit game, store user's progress in .txt file
         {
             string filename = userSelected.username + ".txt";
             ofstream fout;
@@ -115,10 +116,11 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 exit(1);
             }
             fout << userSelected.username << " " << userSelected.currentLevel << " " << userSelected.currentMap << " " << userSelected.currentLimit << " " << userSelected.currentTravel << endl;
+            fout.close();
             stillPlaying = false;
             return;
         }
-        else if (selection == 1)
+        else if (selection == 'e') // if user decides to retry level
         {
             playCurrentLevel(userSelected, stillPlaying);
         }

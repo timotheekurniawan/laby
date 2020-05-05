@@ -177,7 +177,7 @@ void moveDown(int labyPos,User &userSelected){
 //getIntialLimit() to get move limit of user's respective level
 //moveLeft(),moveRight(),moveUp(), and moveDown() to move to respective directions
 void getMove(User &userSelected,bool &stillPlaying){
-    int move;
+    char move;
     int labyPos=(userSelected.currentMap).find('L');//to find postion(index) of laby in map represented by a string
     // // userSelected.currentLimit=getInitialLimit(userSelected.currentLevel);
     // cout << "Covered: " << userSelected.currentTravel << endl; 
@@ -192,23 +192,23 @@ void getMove(User &userSelected,bool &stillPlaying){
     // cout<<endl;
     cout<<"Select: ";
     cin>>move;
-    if (move==1)
+    if (move=='a')
     {
         moveLeft(labyPos,userSelected);
     }
-    else if (move==2)
+    else if (move=='d')
     {
         moveRight(labyPos,userSelected);
     }
-    else if (move==3)
+    else if (move=='w')
     {
         moveUp(labyPos,userSelected);
     }
-    else if (move==4)
+    else if (move=='s')
     {
         moveDown(labyPos,userSelected);
     } 
-    else if (move==5)//if the user decides to quit in the middle of the game, progess will still be saved
+    else if (move=='q')//if the user decides to quit in the middle of the game, progess will still be saved
     {
         string filename=userSelected.username+".txt";
         ofstream fout;
@@ -221,6 +221,12 @@ void getMove(User &userSelected,bool &stillPlaying){
         fout<<userSelected.username<<" "<<userSelected.currentLevel<<" "<<userSelected.currentMap<<" "<<userSelected.currentLimit<<" "<<userSelected.currentTravel<<endl;
         fout.close();
         stillPlaying=false;
+    }
+    else
+    {
+        cout<<"Invalid selection"<<endl;
+        cout<<"Select: ";
+        cin>>move;
     }
     cout << endl << "---------------------" << endl << endl;
 }
