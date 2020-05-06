@@ -49,6 +49,10 @@
    - userStruct.cpp → declaration of User Struct
    - welcome.cpp → starting the game
    - congrats.cpp → finishing the game
+ 
+ 6. Compilation and execution instructions
+    1. $make
+    2. $./main
 
 References:
    - Title Name → http://patorjk.com/software/taag/#p=display&f=Ogre&t=Labyrinth
