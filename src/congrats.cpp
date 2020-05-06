@@ -12,9 +12,9 @@ using namespace std;
 
 // Function when a user has finished all 10 levels.
 // It displays congratulation message and asks the user whether to restart the game or quit the game.
-// - If the user restarts game, it resets user's game progress(currentLevel, currentMap, 
+// - If the user restarts game, it resets user's game progress(currentLevel, currentMap,
 //   currentLimit, and currentTravel) to level 1 then playGame(username) to play the game again.
-// - If the user quits game, the user's game progress (currentLevel, currentMap, 
+// - If the user quits game, the user's game progress (currentLevel, currentMap,
 //   currentLimit, and currentTravel) is stored in username.txt.
 // Input    : - struct of userSelected (pass by referenced)
 void completedGame(User &userSelected)
@@ -53,7 +53,9 @@ void completedGame(User &userSelected)
         }
         else
         {
-            cout << endl << "---------------- Invalid Selection ----------------" << endl << endl;
+            cout << endl
+                 << "---------------- Invalid Selection ----------------" << endl
+                 << endl;
         }
     }
 }

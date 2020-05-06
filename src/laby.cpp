@@ -37,11 +37,10 @@ void moveLeft(int labyPos, User &userSelected)
             userSelected.currentMap[i + 1] = 'V';
             userSelected.currentLimit -= 1;
         }
-        else if (userSelected.currentMap[i] == 'h')         // the heart is on the block that hasn't been visited
+        else if (userSelected.currentMap[i] == 'h') // the heart is on the block that hasn't been visited
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 1] = 'V';
-            // userSelected.currentLimit+=1; how many currentLimit should be added if heart is obtained?
             userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
             userSelected.currentTravel += 1;
@@ -51,7 +50,6 @@ void moveLeft(int labyPos, User &userSelected)
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 1] = 'V';
-            // userSelected.currentLimit+=1; how many currentLimit should be added if heart is obtained?
             userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
             randomizeHeartPos(userSelected.currentMap);
@@ -96,7 +94,6 @@ void moveRight(int labyPos, User &userSelected)
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i - 1] = 'V';
-            // userSelected.currentLimit+=1;
             userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
             userSelected.currentTravel += 1;
@@ -106,7 +103,6 @@ void moveRight(int labyPos, User &userSelected)
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i - 1] = 'V';
-            // userSelected.currentLimit+=1;
             userSelected.currentLimit += 5;
             userSelected.currentLimit -= 1;
             randomizeHeartPos(userSelected.currentMap);
@@ -151,9 +147,8 @@ void moveUp(int labyPos, User &userSelected)
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 10] = 'V';
-            // userSelected.currentLimit+=1;
             userSelected.currentLimit += 5;
-            userSelected.currentLimit -= 1;           
+            userSelected.currentLimit -= 1;
             userSelected.currentTravel += 1;
             randomizeHeartPos(userSelected.currentMap);
         }
@@ -161,9 +156,8 @@ void moveUp(int labyPos, User &userSelected)
         {
             userSelected.currentMap[i] = 'L';
             userSelected.currentMap[i + 10] = 'V';
-            // userSelected.currentLimit+=1;
             userSelected.currentLimit += 5;
-            userSelected.currentLimit -= 1;           
+            userSelected.currentLimit -= 1;
             randomizeHeartPos(userSelected.currentMap);
         }
         else if (userSelected.currentMap[i] == 'X')
@@ -266,7 +260,8 @@ void getMove(User &userSelected, bool &stillPlaying)
             moveDown(labyPos, userSelected);
             break;
         }
-        else if (move == 'q') //if the user decides to quit in the middle of the game, progess will still be saved
+        //if the user decides to quit in the middle of the game, progess will still be saved
+        else if (move == 'q')
         {
             string filename = userSelected.username + ".txt";
             ofstream fout;
@@ -283,7 +278,9 @@ void getMove(User &userSelected, bool &stillPlaying)
         }
         else
         {
-            cout << endl << "---------------- Invalid Selection ----------------" << endl << endl;
+            cout << endl
+                 << "---------------- Invalid Selection ----------------" << endl
+                 << endl;
         }
     }
     cout << endl

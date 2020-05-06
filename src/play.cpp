@@ -25,7 +25,9 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
     //the user continues playing if user's currentLimit is bigger than 0 and user hasn't filled out all the spaces in the map
     while (userSelected.currentLimit > 0 && userSelected.currentTravel < spaces[userSelected.currentLevel - 1] && stillPlaying)
     {
-        cout << "                      " << "Level " << userSelected.currentLevel << "                      " << endl << endl;
+        cout << "                      "
+             << "Level " << userSelected.currentLevel << "                      " << endl
+             << endl;
         buildMap(userSelected.currentMap);
         cout << endl;
         cout << "Moves Remaining: " << userSelected.currentLimit << endl;
@@ -55,7 +57,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 cout << endl;
 
                 //if user decides to quit game, save user's progress to .txt file
-                if (selection == 'q') 
+                if (selection == 'q')
                 {
                     string filename = userSelected.username + ".txt";
                     ofstream fout;
@@ -77,12 +79,12 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                     break;
                 }
                 //if user enters neither e or q
-                else 
+                else
                 {
-                    cout << "---------------- Invalid Selection ----------------" << endl << endl;
+                    cout << "---------------- Invalid Selection ----------------" << endl
+                         << endl;
                 }
             }
- 
         }
         //if user has finished 10 levels
         else
@@ -111,7 +113,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
         userSelected.currentTravel = 1;
         cout << "Level " << userSelected.currentLevel << " failed!" << endl
              << endl;
-             
+
         while (invalidSelection(selectionList, selection, sizeSelectionList))
         {
             cout << "(e) Retry" << endl;
@@ -136,18 +138,18 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 break;
             }
             // if user decides to retry level
-            else if (selection == 'e') 
+            else if (selection == 'e')
             {
                 playCurrentLevel(userSelected, stillPlaying);
                 break;
             }
             //if user enters neither e or q
-            else 
+            else
             {
-                cout << "---------------- Invalid Selection ----------------" << endl << endl;
+                cout << "---------------- Invalid Selection ----------------" << endl
+                     << endl;
             }
         }
-        
     }
 }
 

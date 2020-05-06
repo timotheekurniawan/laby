@@ -10,9 +10,12 @@ using namespace std;
 //            - the number of available selections
 // Output   : - true if the selection is invalid
 //            - false if the seleciton is valid
-bool invalidSelection(char selectionList[], char selection, int sizeSelectionList){
-    for (int i = 0; i < sizeSelectionList; ++i){
-        if (selection == selectionList[i]){
+bool invalidSelection(char selectionList[], char selection, int sizeSelectionList)
+{
+    for (int i = 0; i < sizeSelectionList; ++i)
+    {
+        if (selection == selectionList[i])
+        {
             return false;
         }
     }

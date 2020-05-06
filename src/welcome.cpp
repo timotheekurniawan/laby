@@ -11,9 +11,8 @@
 #include "invalidSelection.h"
 using namespace std;
 
-
 // Function to check if the save file "usernameList.txt"
-// exist. 
+// exist.
 // Output   : - true if exist
 //            - false if does not exist
 bool existingSaveFiles()
@@ -28,7 +27,6 @@ bool existingSaveFiles()
     {
         return true;
     }
-    
 }
 
 // Function to add new username to usernameList.txt
@@ -63,7 +61,7 @@ void displayExistingUsers()
     return;
 }
 
-// Function that counts the number of existing user 
+// Function that counts the number of existing user
 // in usernameList.txt
 // Output   : - the number of existing users
 int countExistingUsers()
@@ -166,16 +164,17 @@ User newGame()
         if (usernameExist(newUsername) == false)
         {
             createUser(newUsername, newUser);
-            delete (newUser);                       // Free the memory allocated to the pointer newUser
-            getUser(newUsername, currentUser);      // Get the user and store in to currentUser
-            cout << endl << "---------------------------------------------------" << endl;
+            delete (newUser);                  // Free the memory allocated to the pointer newUser
+            getUser(newUsername, currentUser); // Get the user and store in to currentUser
+            cout << endl
+                 << "---------------------------------------------------" << endl;
             return currentUser;
         }
-        cout << endl << "Username already exist." << endl;
+        cout << endl
+             << "Username already exist." << endl;
         cout << "Enter a new username: ";
     }
 }
-
 
 // Function used if the player choose Continue Game.
 // The player chooses the user.
@@ -197,17 +196,19 @@ User continueGame()
     // Loop if chosenUsernameNumber is invalid
     while (chosenUsernameNumber <= 0 || chosenUsernameNumber > numberOfExistingUsers)
     {
-        if (firstLoop == false){
-            cout << endl << "---------------- Invalid Selection ----------------" << endl;
+        if (firstLoop == false)
+        {
+            cout << endl
+                 << "---------------- Invalid Selection ----------------" << endl;
         }
         firstLoop = false;
         cout << "Choose an existing user:" << endl;
         displayExistingUsers();
         cout << "Selection: ";
         cin >> chosenUsernameNumber;
-        
     }
-    cout << endl << "---------------------------------------------------" << endl;
+    cout << endl
+         << "---------------------------------------------------" << endl;
     for (int i = 0; i < chosenUsernameNumber; ++i)
     {
         fin >> chosenUsername;
@@ -216,8 +217,9 @@ User continueGame()
     return chosenUser;
 }
 
-// Function to print the star logo in the opening 
-void printStar(){
+// Function to print the star logo in the opening
+void printStar()
+{
     string indent = "                     ";
     cout << indent << "    ." << endl;
     cout << indent << "___/ \\___" << endl;
@@ -226,7 +228,8 @@ void printStar(){
 }
 
 // Function to print the title "LABYRINTH" in the opening
-void printLabyrinth(){
+void printLabyrinth()
+{
     string indent = "  ";
     cout << indent << "   __       _                _       _   _     " << endl;
     cout << indent << "  / /  __ _| |__  _   _ _ __(_)_ __ | |_| |__  " << endl;
@@ -245,10 +248,12 @@ User welcome()
     char selectionList[2] = {'1', '2'};
     int sizeSelectionList = 2;
     User userPlaying;
-    cout << "---------------------------------------------------" << endl << endl;
+    cout << "---------------------------------------------------" << endl
+         << endl;
     printStar();
     printLabyrinth();
-    cout << endl << endl;
+    cout << endl
+         << endl;
     while (invalidSelection(selectionList, game, sizeSelectionList))
     {
         cout << "(1) New Game" << endl;
@@ -257,29 +262,38 @@ User welcome()
         cin >> game;
         if (game == '1')
         {
-            cout << endl << "---------------------------------------------------" << endl << endl;
+            cout << endl
+                 << "---------------------------------------------------" << endl
+                 << endl;
             userPlaying = newGame();
             break;
         }
         else if (game == '2')
         {
-            cout << endl << "---------------------------------------------------" << endl << endl;
+            cout << endl
+                 << "---------------------------------------------------" << endl
+                 << endl;
             if (existingSaveFiles())
             {
                 userPlaying = continueGame();
             }
             else
             {
-                cout << "No existing user yet!" << endl << endl;
-                cout << "---------------------------------------------------" << endl << endl;
-                cout << "Creating a new user.." << endl << endl;
+                cout << "No existing user yet!" << endl
+                     << endl;
+                cout << "---------------------------------------------------" << endl
+                     << endl;
+                cout << "Creating a new user.." << endl
+                     << endl;
                 userPlaying = newGame();
             }
             break;
         }
-        else 
+        else
         {
-            cout << endl << "---------------- Invalid Selection ----------------" << endl << endl;
+            cout << endl
+                 << "---------------- Invalid Selection ----------------" << endl
+                 << endl;
         }
     }
     cout << endl;
