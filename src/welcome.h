@@ -1,4 +1,5 @@
 //welcome.h
+
 #ifndef WELCOME_H
 #define WELCOME_H
 #include <string>
@@ -6,7 +7,7 @@
 #include "levels.h"
 #include "invalidSelection.h"
 
-bool ExistingSaveFiles();
+bool existingSaveFiles();
 void addToUsernameList(std::string username);
 void displayExistingUsers();
 int countExistingUsers();

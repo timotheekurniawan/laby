@@ -1,6 +1,6 @@
-//congrats.cpp
-//this file contains the function when a player finishes all 10 levels of the game
-//displays congratulations/completion message
+// congrats.cpp
+// This file contains the function when a player finishes all 10 levels of the game
+
 #include <iostream>
 #include <fstream>
 #include "congrats.h"
@@ -10,12 +10,13 @@
 #include "invalidSelection.h"
 using namespace std;
 
-// Function used when a user has finished all 10 levels.
+// Function when a user has finished all 10 levels.
 // It displays congratulation message and asks the user whether to restart the game or quit the game.
-// - If the user restarts game, it resets user's game progress(currentLevel, currentMap, and currentLimit) to level 1
-//   playGame(username) to play the game again.
-// - If the user quits game, the user's game progress(currentLevel,currentMap,etc.) is stored in username.txt.
-//input: struct of userSelected (pass by referenced)
+// - If the user restarts game, it resets user's game progress(currentLevel, currentMap, 
+//   currentLimit, and currentTravel) to level 1 then playGame(username) to play the game again.
+// - If the user quits game, the user's game progress (currentLevel, currentMap, 
+//   currentLimit, and currentTravel) is stored in username.txt.
+// Input    : - struct of userSelected (pass by referenced)
 void completedGame(User &userSelected)
 {
     char selectionList[2] = {'1', '2'};

@@ -1,17 +1,17 @@
-//laby.cpp
-//this file contains functions to move the character Laby in the map
+// laby.cpp
+// This file contains functions to move the character Laby in the map
+
 #include <iostream>
 #include <fstream>
 #include "laby.h"
 #include "userStruct.h"
 #include "levels.h"
 #include "invalidSelection.h"
-
 using namespace std;
 
-#define HEART "\xE2\x99\xA5"
-
-//function to move laby to the left
+// Function to move laby to the left and update the data of userSelected
+// Input    : - an integer representing the position of Laby in the map
+//            - struct of user Selected (pass-by-referenced)
 void moveLeft(int labyPos, User &userSelected)
 {
     int a = labyPos % 10; //e.g if laby is at index 32, a=2
@@ -63,7 +63,9 @@ void moveLeft(int labyPos, User &userSelected)
     }
 }
 
-//function to move laby to the right
+// Function to move laby to the right and update the data of userSelected
+// Input    : - an integer representing the position of Laby in the map
+//            - struct of user Selected (pass-by-referenced)
 void moveRight(int labyPos, User &userSelected)
 {
     int b = labyPos % 10; //e.g. laby is at index 35, so b will be 5
@@ -117,7 +119,9 @@ void moveRight(int labyPos, User &userSelected)
     }
 }
 
-//function to move laby upwards
+// Function to move laby upwards and update the data of userSelected
+// Input    : - an integer representing the position of Laby in the map
+//            - struct of user Selected (pass-by-referenced)
 void moveUp(int labyPos, User &userSelected)
 {
     int a = labyPos % 10; //e.g laby is at index 5, then a=5
@@ -169,7 +173,9 @@ void moveUp(int labyPos, User &userSelected)
     }
 }
 
-//function to move laby downwards
+// Function to move laby downwards and update the data of userSelected
+// Input    : - an integer representing the position of Laby in the map
+//            - struct of user Selected (pass-by-referenced)
 void moveDown(int labyPos, User &userSelected)
 {
     int a = labyPos % 10; //e.g laby is at index 5, a will be 5
@@ -220,9 +226,10 @@ void moveDown(int labyPos, User &userSelected)
     }
 }
 
-//function to get user input of move selection
-//getIntialLimit() to get move limit of user's respective level
-//moveLeft(),moveRight(),moveUp(), and moveDown() to move to respective directions
+// Function to get user input of move selection then move Laby
+// respective to the selection and update the data of userSelected
+// Input    : - struct of userSelected (pass-by-referenced)
+//            - a boolean which indicates if the user is still playing
 void getMove(User &userSelected, bool &stillPlaying)
 {
     char selectionList[5] = {'w', 'a', 's', 'd', 'q'};

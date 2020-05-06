@@ -1,6 +1,7 @@
 // welcome.cpp
 // Display welcome message, choose either new or continue game
 // Get the user and return it to the main function
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -10,7 +11,12 @@
 #include "invalidSelection.h"
 using namespace std;
 
-bool ExistingSaveFiles()
+
+// Function to check if the save file "usernameList.txt"
+// exist. 
+// Output   : - true if exist
+//            - false if does not exist
+bool existingSaveFiles()
 {
     ifstream fin;
     fin.open("usernameList.txt");
@@ -59,6 +65,7 @@ void displayExistingUsers()
 
 // Function that counts the number of existing user 
 // in usernameList.txt
+// Output   : - the number of existing users
 int countExistingUsers()
 {
     int count = 0;
@@ -95,7 +102,7 @@ void getUser(string chosenUsername, User &chosenUser)
 // with username input. It also calls the function
 // addToUsernameList() to add the new username to usersList.txt
 // Input    : - new username
-//            - newUser (pass by referenced)
+//            - a pointer newUser (pass by referenced)
 void createUser(string newUsername, User *&newUser)
 {
     string file = newUsername + ".txt";
@@ -117,8 +124,9 @@ void createUser(string newUsername, User *&newUser)
     fout.close();
 }
 
-// Function to check if the username is in the usernamelist
-// returns true if exist, returns false if not exist
+// Function to check if the username is in the usernameList.txt
+// Output   : - true if exist
+//            - false if does not exist
 bool usernameExist(string newUsername)
 {
     ifstream fin;
@@ -158,15 +166,14 @@ User newGame()
         if (usernameExist(newUsername) == false)
         {
             createUser(newUsername, newUser);
-            delete (newUser);                  // free the memory
-            getUser(newUsername, currentUser); // get the user
+            delete (newUser);                       // Free the memory allocated to the pointer newUser
+            getUser(newUsername, currentUser);      // Get the user and store in to currentUser
             cout << endl << "---------------------------------------------------" << endl;
             return currentUser;
         }
         cout << endl << "Username already exist." << endl;
         cout << "Enter a new username: ";
     }
-
 }
 
 
@@ -209,6 +216,7 @@ User continueGame()
     return chosenUser;
 }
 
+// Function to print the star logo in the opening 
 void printStar(){
     string indent = "                     ";
     cout << indent << "    ." << endl;
@@ -217,6 +225,7 @@ void printStar(){
     cout << indent << " /.' '.\\" << endl;
 }
 
+// Function to print the title "LABYRINTH" in the opening
 void printLabyrinth(){
     string indent = "  ";
     cout << indent << "   __       _                _       _   _     " << endl;
@@ -229,7 +238,7 @@ void printLabyrinth(){
 
 // Function to display welcome message and let the player choose
 // to new game or continue game.
-// Return   : the user
+// Return   : - the user
 User welcome()
 {
     char game;
@@ -255,7 +264,7 @@ User welcome()
         else if (game == '2')
         {
             cout << endl << "---------------------------------------------------" << endl << endl;
-            if (ExistingSaveFiles())
+            if (existingSaveFiles())
             {
                 userPlaying = continueGame();
             }

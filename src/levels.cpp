@@ -1,5 +1,5 @@
-//levels.cpp
-//this file contains functions and codes related to the map of each level of the game
+// levels.cpp
+// This file contains functions relating to the levels of the game
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -7,13 +7,13 @@
 #include "levels.h"
 using namespace std;
 
-//DEFINE HEARTS
+// Define the symbols used in printing the Map
 #define HEART "\xE2\x99\xA5"
 #define UNAVAILABLE "\xe2\x96\x88"
 #define LABY "\xe2\x98\x85"
 #define VISITED "\xe2\x97\xa6"
 
-// Map of each level in form of string
+// An array storing maps of levels in the game in form of string
 string maps[10] = {
     "--XXXXXXXX----XXXXXX------XXXX--------XX-------------------X-------XXX-----XXXXX---XXXXXXX-XXXXXXXXX",
     "XXXXXXXXXX---------X-X-XX-X----X---------X-XX-X-X-----X-X-X-------X-X--X---XX-X--XX-----X-XXXXXXXXXX",
@@ -26,15 +26,15 @@ string maps[10] = {
     "-----XXXXX-XX---XX---X----X-------------XX------X-XXXXX-X---------XXX--XXXX-XXX--XXXX-X---------X---",
     "XXX------X----XXXX-X--X----X-X--X-XX---XX-X--XXXXX--XX-------X--X-XX---X--X-XX------X-----XXX------X"};
 
-// Move limit of each level
+// An array storing the move limit of each level
 int limits[10] = {65, 115, 75, 75, 145, 100, 125, 105, 120, 85};
 
-// Spaces to be traveled by laby of each level
+// An array storing the spaces to be traveled by laby of each level
 int spaces[10] = {55, 57, 61, 48, 81, 68, 73, 66, 64, 62};
 
 // Function to get the initial limit of the level
 // Input    : - level
-// Return   : - the initial limit
+// Output   : - the initial limit
 int getInitialLimit(int level)
 {
     return limits[level - 1];
@@ -42,7 +42,7 @@ int getInitialLimit(int level)
 
 // Function to get the initial available spaces of the level
 // Input    : - level
-// Return   : - the initial available spaces
+// Output   : - the initial available spaces
 int getInitialSpace(int level)
 {
     return spaces[level - 1];
@@ -111,13 +111,13 @@ void buildMap(string map)
     string line;
     for (int i = 0; i < 10; ++i)
     {
-        cout << "               ";
+        cout << "               ";                  // Output indent
         for (int a = 0; a < 10; ++a)
         {
             cout << " -";
         }
         cout << endl;
-        line = map.substr(i * 10, 10); // Get each line. i * 10 to get index 0, 10, and so on.
+        line = map.substr(i * 10, 10);              // Get each line. i * 10 to get index 0, 10, and so on.
         cout << "               ";
         for (int b = 0; b < 10; ++b)
         {
@@ -146,8 +146,8 @@ void buildMap(string map)
         cout << "|" << endl;
     }
     cout << "               ";
-    for (int a = 0; a < 10; ++a)
-    { // Print last line
+    for (int a = 0; a < 10; ++a)                    // Print last line
+    { 
         cout << " -";
     }
     cout << endl;

@@ -1,5 +1,6 @@
-//main.cpp
+// main.cpp
 // The main program
+
 #include <iostream>
 #include "welcome.h"
 #include "play.h"
