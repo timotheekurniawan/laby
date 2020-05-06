@@ -70,7 +70,7 @@ void randomizeStartPos(string &map)
 
 // Function to randomize the position of heart
 // in the map then update it to the map. This function
-// is used when starting or restarting level
+// is used when starting or restarting level or when a heart is obtained
 // Input    : - map (pass by referenced)
 void randomizeHeartPos(string &map)
 {
@@ -79,12 +79,12 @@ void randomizeHeartPos(string &map)
     while (true)
     {
         heartPos = rand() % 100;
-        if (map.substr(heartPos, 1) == "-")                 // The pos to be a heart is originally unvisited
+        if (map.substr(heartPos, 1) == "-") // The pos to be a heart is originally unvisited
         {
             map.replace(heartPos, 1, "h");
             break;
         }
-        if (map.substr(heartPos, 1) == "V")                 // The pos to be a heart is originally already visited 
+        if (map.substr(heartPos, 1) == "V") // The pos to be a heart is originally already visited
         {
             map.replace(heartPos, 1, "H");
             break;
@@ -111,13 +111,13 @@ void buildMap(string map)
     string line;
     for (int i = 0; i < 10; ++i)
     {
-        cout << "               ";                  // Output indent
+        cout << "               "; // Output indent
         for (int a = 0; a < 10; ++a)
         {
             cout << " -";
         }
         cout << endl;
-        line = map.substr(i * 10, 10);              // Get each line. i * 10 to get index 0, 10, and so on.
+        line = map.substr(i * 10, 10); // Get each line. i * 10 to get index 0, 10, and so on.
         cout << "               ";
         for (int b = 0; b < 10; ++b)
         {
@@ -146,8 +146,8 @@ void buildMap(string map)
         cout << "|" << endl;
     }
     cout << "               ";
-    for (int a = 0; a < 10; ++a)                    // Print last line
-    { 
+    for (int a = 0; a < 10; ++a) // Print last line
+    {
         cout << " -";
     }
     cout << endl;
