@@ -50,7 +50,6 @@
    - welcome.cpp → starting the game
    - congrats.cpp → finishing the game
 
-
 References:
    - Title Name → http://patorjk.com/software/taag/#p=display&f=Ogre&t=Labyrinth
    - Star Logo → https://ascii.co.uk/art/star
