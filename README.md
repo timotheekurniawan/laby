@@ -51,7 +51,8 @@
    - congrats.cpp → finishing the game
  
  6. Compilation and execution instructions
-    - Run the game by typing ./start_game.sh in the command line.
+    - Run the game by typing ./start_game.sh in the command line. The command will
+      automatically compile and execute the game.
 
 References:
    - Title Name → http://patorjk.com/software/taag/#p=display&f=Ogre&t=Labyrinth
