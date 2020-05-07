@@ -51,7 +51,7 @@
    - congrats.cpp → finishing the game
  
  6. Compilation and execution instructions
-    - ./start_game.sh
+    - Run the game by typing ./start_game.sh in the command line.
 
 References:
    - Title Name → http://patorjk.com/software/taag/#p=display&f=Ogre&t=Labyrinth
