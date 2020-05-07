@@ -51,8 +51,7 @@
    - congrats.cpp → finishing the game
  
  6. Compilation and execution instructions
-    1. $make
-    2. $./main
+    - ./start_game.sh
 
 References:
    - Title Name → http://patorjk.com/software/taag/#p=display&f=Ogre&t=Labyrinth
