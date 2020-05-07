@@ -27,12 +27,15 @@ void completedGame(User &userSelected)
     fout.open(filename);
     cout << "Congratulations. You have completed all the levels!" << endl;
 
+    // Loop as long as the selection made by user is invalid
     while (invalidSelection(selectionList, selection, sizeSelectionList))
     {
         cout << "(1) Restart Game" << endl;
         cout << "(2) Quit Game" << endl;
         cout << "Selection: " << endl;
         cin >> selection;
+
+        // If the user choose to Restart Game
         if (selection == '1')
         {
             userSelected.currentLevel = 1;
@@ -44,6 +47,7 @@ void completedGame(User &userSelected)
             playGame(userSelected);
             break;
         }
+        // If the user choose to Quit Game
         else if (selection == '2')
         {
             userSelected.currentLevel = 11;

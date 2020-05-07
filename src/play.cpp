@@ -10,19 +10,19 @@
 #include "invalidSelection.h"
 using namespace std;
 
-// Function to play a certain level
-// randomizeStartPos() is called to place laby in a randomize position in the map
-// randomizeHeartPos() is called to place a heart in a randomize position in the map
-// getMove() is called for getting user's input on what direction will laby go
-// buildMap is called to output the map
-// stores userSelected's progress(currentLevel,currentMap,currentLimit,currentTravel) in userSelected.username.txt when user decides to quit game
+// Function to play a certain level. It display the game and asks for input until
+// the player ran out of moves or the level is completed. Then it checks if the player
+// completed or failed the level. Finally, It stores userSelected's progress 
+// (currentLevel, currentMap, currentLimit, currentTravel) in userSelected.username.txt 
+// when user decides to quit game.
 // Input : - struct of userSelected (pass-by-referenced)
 //         - boolean stillPlaying which indicates if the user is still playing
 void playCurrentLevel(User &userSelected, bool &stillPlaying)
 {
     char selection;
 
-    //the user continues playing if user's currentLimit is bigger than 0 and user hasn't filled out all the spaces in the map
+    // The user continues playing if user's currentLimit is bigger than 0 
+    // and user hasn't filled out all the spaces in the map
     while (userSelected.currentLimit > 0 && userSelected.currentTravel < spaces[userSelected.currentLevel - 1] && stillPlaying)
     {
         cout << "                      "
@@ -35,9 +35,11 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
         getMove(userSelected, stillPlaying);
     }
 
-    //if user fills out all the empty spaces in the map with and user's currentLimit is not yet 0
+    // If user completed the game, indicated by all available spaces 
+    // has been visited and user's currentLimit is not yet 0
     if (userSelected.currentTravel == spaces[userSelected.currentLevel - 1] && userSelected.currentLimit >= 0)
     {
+        // If the user has not finished all 10 levels
         if (userSelected.currentLevel + 1 < 11)
         {
             char selectionList[2] = {'e', 'q'};
@@ -48,6 +50,8 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
             userSelected.currentMap = getEmptyMap(userSelected.currentLevel);
             userSelected.currentLimit = getInitialLimit(userSelected.currentLevel);
             userSelected.currentTravel = 1;
+
+            // Loop as long as the selection made by user is invalid
             while (invalidSelection(selectionList, selection, sizeSelectionList))
             {
                 cout << "(e) Continue" << endl;
@@ -56,7 +60,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 cin >> selection;
                 cout << endl;
 
-                //if user decides to quit game, save user's progress to .txt file
+                // If user decides to quit game, save user's progress to .txt file
                 if (selection == 'q')
                 {
                     string filename = userSelected.username + ".txt";
@@ -72,13 +76,13 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                     break;
                 }
 
-                //if the user decides to continue game
+                // If the user decides to continue game
                 else if (selection == 'e')
                 {
                     playCurrentLevel(userSelected, stillPlaying);
                     break;
                 }
-                //if user enters neither e or q
+                // If user enters neither e or q
                 else
                 {
                     cout << "---------------- Invalid Selection ----------------" << endl
@@ -86,7 +90,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 }
             }
         }
-        //if user has finished 10 levels
+        // If user has finished all 10 levels
         else
         {
             userSelected.currentLevel += 1;
@@ -103,7 +107,9 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
             stillPlaying = false;
         }
     }
-    //if user fails to complete the level, indicated by not being able to fill out all the empty spaces in the map with and user's currentLimit has reached 0
+
+    // If user fails to complete the level, indicated by not being able to 
+    // visit all the available spaces in the map with and user's currentLimit has reached 0
     else if ((userSelected.currentTravel < spaces[userSelected.currentLevel - 1] && userSelected.currentLimit == 0) || userSelected.currentLimit < 0)
     {
         char selectionList[2] = {'e', 'q'};
@@ -114,6 +120,7 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
         cout << "Level " << userSelected.currentLevel << " failed!" << endl
              << endl;
 
+        // Loop as long as the selection made by user is invalid
         while (invalidSelection(selectionList, selection, sizeSelectionList))
         {
             cout << "(e) Retry" << endl;
@@ -121,7 +128,8 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
             cout << "Select: ";
             cin >> selection;
             cout << endl;
-            //if user decides to quit game, store user's progress in .txt file
+
+            // If user decides to quit game, store user's progress in .txt file
             if (selection == 'q')
             {
                 string filename = userSelected.username + ".txt";
@@ -137,13 +145,13 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
                 stillPlaying = false;
                 break;
             }
-            // if user decides to retry level
+            // If user decides to retry level
             else if (selection == 'e')
             {
                 playCurrentLevel(userSelected, stillPlaying);
                 break;
             }
-            //if user enters neither e or q
+            // If user enters neither e or q
             else
             {
                 cout << "---------------- Invalid Selection ----------------" << endl
@@ -153,10 +161,11 @@ void playCurrentLevel(User &userSelected, bool &stillPlaying)
     }
 }
 
-// Function to play the game
-//Playcurrentlevel() is called to play a certain level
-//CompletedGame() is called to display congratulations message when user succeeds to completed all 10 level
-//input: -struct of userSelected
+// Function to play the game. It calls the function playCurrentLevel
+// as long as the player has not finished all 10 levels and is still playing.
+// Then, it checks if the player has finished all 10 levels. If the player has
+// finished all 10 levels, call the funciton completedGame()
+// Input    : - struct of userSelected(pass-by-referenced)
 void playGame(User &userSelected)
 {
     bool stillPlaying = true;

@@ -131,7 +131,7 @@ bool usernameExist(string newUsername)
     string existingUsername;
     fin.open("usernameList.txt");
 
-    // If usernameList.txt does not exist, returns dne;
+    // If usernameList.txt does not exist, returns false;
     if (fin.fail())
     {
         return false;
@@ -150,11 +150,11 @@ bool usernameExist(string newUsername)
 // Function used if the player choose New Game.
 // It asks for a new username and create the user
 // then store the user locally.
-// Return   : the newly created User
+// Output   : the newly created User
 User newGame()
 {
     string newUsername;
-    User *newUser = new User;
+    User *newUser = new User;                       // Create a variable newUser that points to a dynamically allocated User structure
     User currentUser;
     cout << "Enter a new username: ";
 
@@ -164,8 +164,8 @@ User newGame()
         if (usernameExist(newUsername) == false)
         {
             createUser(newUsername, newUser);
-            delete (newUser);                  // Free the memory allocated to the pointer newUser
-            getUser(newUsername, currentUser); // Get the user and store in to currentUser
+            delete (newUser);                       // Free the memory allocated to the User structure
+            getUser(newUsername, currentUser);      // Get the user and store the data into currentUser (User structure)
             cout << endl
                  << "---------------------------------------------------" << endl;
             return currentUser;
@@ -193,6 +193,7 @@ User continueGame()
     User chosenUser;
     int numberOfExistingUsers = countExistingUsers();
     bool firstLoop = true;
+    
     // Loop if chosenUsernameNumber is invalid
     while (chosenUsernameNumber <= 0 || chosenUsernameNumber > numberOfExistingUsers)
     {
@@ -241,7 +242,7 @@ void printLabyrinth()
 
 // Function to display welcome message and let the player choose
 // to new game or continue game.
-// Return   : - the user
+// Output   : - the user playing
 User welcome()
 {
     char game;
@@ -254,12 +255,15 @@ User welcome()
     printLabyrinth();
     cout << endl
          << endl;
+
+    // Loop as long as the selection made by user is invalid
     while (invalidSelection(selectionList, game, sizeSelectionList))
     {
         cout << "(1) New Game" << endl;
         cout << "(2) Continue Game" << endl;
         cout << "Select: ";
         cin >> game;
+        // If the player chooses New Game
         if (game == '1')
         {
             cout << endl
@@ -268,6 +272,8 @@ User welcome()
             userPlaying = newGame();
             break;
         }
+        
+        // If the player chooses Continue Game
         else if (game == '2')
         {
             cout << endl
