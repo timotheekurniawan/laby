@@ -51,9 +51,12 @@
    - congrats.cpp → finishing the game
  
  6. Compilation and execution instructions
-    1. cd src
-    2. make
-    3. ./main
+    - Compilation :
+      - cd src
+      - make
+    - Execution :
+      - ./main
+
 
 References:
    - Title Name → http://patorjk.com/software/taag/#p=display&f=Ogre&t=Labyrinth
