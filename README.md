@@ -7,13 +7,13 @@
 
 ### Game Description
 
-“Labyrinth” is a game of pathfinding inspired by the mobile game [Amaze](https://play.google.com/store/apps/details?id=com.crazylabs.amaze.game&hl=en). The game’s objective is to cover all the available spaces by moving the character “Laby” within a certain move limit. There will be 10 total levels to beat, each with different maps and move limits. On every level, a heart will pop up in a random position on the map, when the character "Laby" passes by this heart, it will add the move limit, which can help to complete each level. If "Laby" passes by a heart, another heart will pop up immediately in a random position of the map. If users fail to cover all available spaces in the certain move limit, they lose the level and have the option of retrying it.
+“Labyrinth” is a game of pathfinding inspired by the mobile game [Amaze](https://play.google.com/store/apps/details?id=com.crazylabs.amaze.game&hl=en). The game’s objective is to cover all the available spaces by moving the character “Laby” within a certain move limit. There will be 10 total levels to beat, each with different maps and move limits. On every level, a heart will pop up in a random position on the map, when the character "Laby" passes by this heart, it will add the move limit, which can help to complete each level. If "Laby" passes by a heart, another heart will pop up immediately in a random position of the map. If users fail to cover all available spaces in the certain move limit, they lose the level and have the option of retrying it. Users can quit and save their game whenever they like.
 
 ### Game Rules
 
 - Players can only choose from 4 moves, which are left, right, up, or down. “Laby” will move to the respective direction until it hits an obstruction or end of the map. Users enter W, A, S, or D either to move up, left, down, or right respectively.
 - Each space travelled by Laby decreases the move limit of the current level.
-- Spaces travelled by Laby will be counted towards the travel count regardless if Laby has already covered the place before or not.
+- Spaces travelled by Laby will be counted towards the travel count regardless if "Laby" has already covered the place before or not (if Laby has visited a space previously, and Laby travels to that space again).
 - If “Laby” exceeds the travel limit, the player loses.
 - A heart will be placed randomly on the map to increase Laby’s moves remaining / move limit by 5. The number of moves remaining / move limit varies among levels.
 
